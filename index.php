@@ -7,4 +7,5 @@ header('Content-Type: text/html; charset=utf-8');
  * Time: 9:58
  */
 include_once 'functions.php';
-getCurl();
+include_once 'show.php';
+showDateForm();
