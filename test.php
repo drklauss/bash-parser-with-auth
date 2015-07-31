@@ -15,7 +15,7 @@ $pattern='|<table(.+)</table>|';
 preg_match($pattern,$html,$table);
 print_r($table);*/
 $data = file_get_html("http://katashi.ru/currency/?date=.$dateIn.");
-foreach ($data->find('table#ratetable td') as $element) {
+foreach ($data->find('h1') as $element) {
     echo "$element<br>";
 };
 //echo $es;
