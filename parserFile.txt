@@ -1,283 +1,509 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- (c) Art. Lebedev Studio | http://www.artlebedev.ru/ -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>База данных по курсам валют | Банк России</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9" />
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-	<link rel="stylesheet" type="text/css" href="/f/r/global/main.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="/f/r/global/spike.css" media="all" /> 
-	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/f/r/global/main-ie7.css" media="all" /><![endif]-->
-	<link rel="stylesheet" type="text/css" href="/f/r/global/print.css" media="print" />
-		<link rel="stylesheet" type="text/css" href="/f/r/table/table.css" media="all" />
-		<link rel="stylesheet" type="text/css" href="/f/r/global/cal.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="/f/r/faq/faq.css" media="all" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Курсы валют ЦБ РФ на дату 30.07.2015</title>
+<meta name="description" content="Курсы валют" />
+<meta name="keywords" content="курс валют доллара евро" />
+<meta name="copyright" content="Katashi.ru © 2011-2014" />
+<link rel="shortcut icon" href="/lib/image/favicon.ico" />
+<link href="/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="/bootstrap-3.2.0/css/docs.css" rel="stylesheet">
+<link href="/bootstrap/datepicker/css/datepicker.css" rel="stylesheet">
+<link href="/lib/awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/lib/css/ra.css" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script type="text/javascript" src="//vk.com/js/api/openapi.js?100"></script>
+<script type="text/javascript">
+  VK.init({apiId: 3860529, onlyWidgets: true});
+</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/lib/js/validation/dist/jquery.validate.min.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6391759-6']);
+  _gaq.push(['_setDomainName', '.katashi.ru']);
+  _gaq.push(['_trackPageview']);
 
-
-	<script type="text/javascript" src="/f/r/global/jquery-1.6.1.js"></script>
-	<script type="text/javascript" src="/f/r/global/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="/f/r/global/jcommon.js"></script>
-	<script type="text/javascript" src="/f/r/global/commonPopup.js"></script>
-	<script type="text/javascript" src="/f/r/global/switcher.js"></script>
-	<script type="text/javascript" src="/f/r/global/contentPhotosHelper.js"></script>
-	<script type="text/javascript" src="/f/r/global/menu.js"></script>
-	<script type="text/javascript" src="/f/r/global/wholeSite.js"></script>
-	<script type="text/javascript" src="/f/r/global/switcherFolder.js"></script>
-	<script type="text/javascript" src="/f/r/global/footerSearch.js"></script>
-
-	<script type="text/javascript" src="/f/r/faq/faq.js"></script>
-	<script type="text/javascript" src="/f/r/global/table_highlight.js"></script>
-	<script type="text/javascript" src="/f/r/global/main.js"></script>
-	<script src="/f/r/global/tooltip.js" type="text/javascript"></script>
-
-
-	<link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.9.1.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/f/r/currency_base/currency.css"  media="all" />
-	<link rel="stylesheet" type="text/css" href="/f/r/currency_base/currency_print.css"  media="print" />
-	<script type="text/javascript" src="/js/jquery-ui-1.9.2.min.js"></script>
-	<script type="text/javascript" src="/js/jquery.ui.datepicker-ru.js"></script>
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 </head>
 <body>
-<!--#FILEID:107904#-->
-	<div id="page">
-		<div id="layout" class="cleared">
-			<div id="nav" class="no_visited">
-				<div class="logo">
-					<a href="/" id="homelink">
-						<img alt="Центральный банк Российской Федерации" width="201" height="59" src="/f/1/global/logo.png" /></a>
-				</div>
-				<div class="menu with_bottom_shadow no_visited">
-					<i class="icon toggler"></i>
-					
-	<ul><li>
-		<div class="parent">
-		<a href="/hd_base/">Базы данных</a>
-		</div>
-
-	<ul><li>
-		<div class="parent">
-		<a href="/currency_base/">База данных по&#160;курсам валют</a>
-		</div>
-
-<ul class="last_level">
-<li><div class="current"><b class="selected">Официальные курсы валют на&#160;заданную дату, устанавливаемые ежедневно</b></div></li><li><div><a href="/currency_base/dynamics.aspx">Динамика официального курса заданной валюты</a></div></li><li><div><a href="/currency_base/monthly.aspx">Официальные курсы валют на&#160;заданную дату, устанавливаемые ежемесячно (до&#160;11.01.2010)</a></div></li><li><div><a href="/currency_base/OldVal.aspx">Курсы валют за&#160;период до&#160;01.07.1992</a></div></li><li><div><a href="/currency_base/GosBankCurs.aspx">Официальные курсы Госбанка СССР</a></div></li><li><div><a href="/currency_base/Press.aspx">Архив информационных сообщений</a></div></li>
-</ul>
-
-	</li></ul>
-
-	</li></ul>
-
-				</div>
-			</div>
-			<div id="main_wrap">
-				<div id="main">
-					
-<ul class="thermo no_visited cleared" id="__breadcrumbs">
-<li class="whole_site_opener unselectable">
-<span class="pseudo"><!--noindex-->Весь сайт<!--/noindex--></span>
-</li>
-
-	<li>
-		<i class="icon"></i>
-		<a href="/hd_base/"><!--noindex-->Базы данных<!--/noindex--></a>
-	</li>
-
-	<li>
-		<i class="icon"></i>
-		<a href="/currency_base/"><!--noindex-->База данных по&#160;курсам валют<!--/noindex--></a>
-	</li>
-    
-
-</ul>
-<div class="whole_site no_visited">
-    <div id="__wholesite_logo" class="logo">
-        <a href="/">
-            <img alt="Центральный банк Российской Федерации" width="201" height="59" src="/f/1/global/logo.png" /></a></div>
-    <div id="__wholesite_opener" class="whole_site_opener unselectable">
-        <span class="pseudo">
-            <!--noindex-->Весь сайт<!--/noindex-->
-        </span>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=1418106385068044";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+﻿ 
+<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand glyphicon glyphicon-home"></a>
     </div>
-    <span id="__wholesite_closer" class="pseudo popup_close"><i class="icon"></i>закрыть</span>
-    <div class="whole_site_map_container">
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+    <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Банки <b class="caret"></b></a>
+		<ul class="dropdown-menu">
+            <li><a href="http://katashi.ru/bank">Все банки</a></li>
+            <li><a href="http://katashi.ru/bank/closed">Ликвидированные банки</a></li>
+            <li><a href="http://katashi.ru/bank/revoked">Отозвана лицензия</a></li>
+			<li><a href="http://katashi.ru/bank/region">По регионам</a></li>
+            <li><a href="http://katashi.ru/bic">Справочник БИК</a></li>
+            <li><a href="http://katashi.ru/swift">SWIFT коды</a></li>
+            <li><a href="http://katashi.ru/bankomat">Банкоматы</a></li>
+            <li><a href="http://katashi.ru/deposit">Вклады</a></li>
+            <li><a href="http://katashi.ru/bank/otzyvy">Отзывы о банках</a></li>
+		</ul>
+	</li>
+    <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Займы <b class="caret"></b></a>
+		<ul class="dropdown-menu">
+            <li><a href="http://katashi.ru/microfinansovye-organizacii/application/">Заявка на займ</a></li>
+		</ul>
+	</li>    
+    <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Рейтинги <b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="http://katashi.ru/bank/rating/capital">По капиталу</a></li>
+            <li><a href="http://katashi.ru/bank/rating/profit">По чистой прибыли</a></li>
+            <li><a href="http://katashi.ru/bank/rating/deposit">По вкладам физических лиц</a></li>
+            <li><a href="http://katashi.ru/bank/rating/credit">По кредитам физическим лицам</a></li>
+            <li><a href="http://katashi.ru/bank/rating/branches">По количеству филиалов</a></li>
+		</ul>
+	</li>        
+    <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">МФО <b class="caret"></b></a>
+		<ul class="dropdown-menu">
+            <li><a href="http://katashi.ru/microfinansovye-organizacii">Реестр МФО</a></li>
+            <li><a href="http://katashi.ru/microfinansovye-organizacii/region/">МФО по регионам</a></li>
+            <li><a href="http://katashi.ru/microfinansovye-organizacii/closed/">Ликвидированные МФО</a></li>
+            <li><a href="http://katashi.ru/microfinansovye-organizacii/statistics/">Статистика МФО</a></li>
+            <li><a href="http://katashi.ru/microfinansovye-organizacii/otzyvy/">Отзывы об МФО</a></li>
+		</ul>
+	</li>        
+<li class="dropdown">
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Терминалы <b class="caret"></b></a>    
+        <ul class="dropdown-menu">
+            <li><a href="http://katashi.ru/terminaly-qiwi">Терминалы QIWI</a></li>
+            <li><a href="http://katashi.ru/terminaly-elecsnet">Терминалы Элекснет</a></li>
+            <li><a href="http://katashi.ru/american-express">Терминалы American Express</a></li>
+            <li><a href="http://katashi.ru/china-unionpay">Терминалы China Union Pay</a></li>
+		</ul>
+	</li>            
+    <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Разное <b class="caret"></b></a>
+		<ul class="dropdown-menu">
+            <li><a href="http://katashi.ru/upravljajushhie-kompanii">Управляющие компании</a></li>
+            <li><a href="http://katashi.ru/strahovye-kompanii">Реестр страховых компаний</a></li> 
+            <li><a href="http://katashi.ru/strahovye-kompanii/region/">Страховые компании по регионам</a></li>            
+            <li><a href="http://katashi.ru/creditnye-potrebitelskie-kooperativy">Реестр кредитных потребительских кооперативов</a></li>
+            <li><a href="http://katashi.ru/creditnye-potrebitelskie-kooperativy/region/">Кредитные потребительские кооперативы по регионам</a></li>            
+            <li><a href="http://katashi.ru/news">Новости</a></li>
+            <li><a href="http://katashi.ru/currency">Курсы валют</a></li>
+		</ul>
+	</li>   
+</ul>       
+    <ul class="nav navbar-nav navbar-right">
+            <li><a href="" data-toggle="modal" data-target="#myModal">Вход</a></li>
+            <li><a href="/user/signup">Регистрация</a></li>
+    </ul>
+                     
+          </nav> 
+  </div>
+</header>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Авторизация</h4>
+      </div>
+      <form class="" method="post" name="authform" id="authform">
+      <div class="modal-body">
+            <div class="form-group">
+              <input name="email" type="email" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input name="password" type="password" placeholder="Пароль" class="form-control">
+            </div>
+      </div>
+      <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Войти</button>
+            <a href="/user/passremind">Забыли пароль</a>
+      </div>
+      </form>
     </div>
+  </div>
+</div><div class="container">
+<div class="partner-content"><!-- banner:Leads.su:921b0b148e88c301a8e82ab368d32b71 "Совкомбанк [credits][sale]" -->
+<a target="_blank" rel="nofollow" href="https://pxl.leads.su/click/921b0b148e88c301a8e82ab368d32b71">
+	<img width="947" height="100" border="0" src="https://pxl.leads.su/impression/b3637c3a867fc1e224ce8a4e2ae23730" alt="Совкомбанк [credits][sale]" />
+</a>
+<!-- /Leads.su -->
+<script type="text/javascript" async="" src="https://s3-eu-west-1.amazonaws.com/img.leads.su/leads_ad.js"></script></div>
+    <br />  
+    <div class="page-header">
+        <h1>Курсы валют ЦБ РФ на дату 30.07.2015</h1>
+    </div>
+<form class="form-inline" role="form">
+<div class="form-group">
+<label>Курсы валют, устанавливаемые Центральным Банком РФ, на дату:</label>
+<div class="input-group" id="dp" data-date="30/07/2015" data-date-format="dd/mm/yyyy">
+  <input type="text" class="form-control" value="30/07/2015" readonly="" >
+  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 </div>
+</div>
+</form> 
+<br /> 
+<div class="table-responsive">
+<table class="table table-bordered" id="ratetable">
+    <thead>
+				<tr>
+					<th>Валюта</th>
+                    <th>Код alfa-3</th>
+                    <th>Код number-3</th>
+					<th>Количество</th>	
+					<th>Курс</th>
+					<th>Изменение</th>
+                    <th>Изменение %</th>					
+				</tr>
+    </thead>
+<tbody>
+<tr><td><a href="/currency/R01010/" />Австралийский доллар</a></td>
+    <td style="text-align:right">AUD</td>
+    <td style="text-align:right">036</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">43.6953</td>
+    <td class="text-danger" style="text-align:right">-0.2917</td>
+    <td class="text-danger" style="text-align:right">-0.66</td>
+    </tr><tr><td><a href="/currency/R01020/" />Азербайджанский манат</a></td>
+    <td style="text-align:right">AZN</td>
+    <td style="text-align:right">944</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">56.9856</td>
+    <td class="text-danger" style="text-align:right">-0.3534</td>
+    <td class="text-danger" style="text-align:right">-0.62</td>
+    </tr><tr><td><a href="/currency/R01035/" />Фунт стерлингов Соединенного королевства</a></td>
+    <td style="text-align:right">GBP</td>
+    <td style="text-align:right">826</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">93.3134</td>
+    <td class="text-danger" style="text-align:right">-0.2793</td>
+    <td class="text-danger" style="text-align:right">-0.30</td>
+    </tr><tr><td><a href="/currency/R01060/" />Армянский драм</a></td>
+    <td style="text-align:right">AMD</td>
+    <td style="text-align:right">051</td>
+    <td style="text-align:right">100</td>
+    <td style="text-align:right">12.5297</td>
+    <td class="text-danger" style="text-align:right">-0.0430</td>
+    <td class="text-danger" style="text-align:right">-0.34</td>
+    </tr><tr><td><a href="/currency/R01090/" />Белорусский рубль</a></td>
+    <td style="text-align:right">BYR</td>
+    <td style="text-align:right">974</td>
+    <td style="text-align:right">10000</td>
+    <td style="text-align:right">39.3460</td>
+    <td class="text-danger" style="text-align:right">-0.3528</td>
+    <td class="text-danger" style="text-align:right">-0.89</td>
+    </tr><tr><td><a href="/currency/R01100/" />Болгарский лев</a></td>
+    <td style="text-align:right">BGN</td>
+    <td style="text-align:right">975</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">33.7931</td>
+    <td class="text-danger" style="text-align:right">-0.2813</td>
+    <td class="text-danger" style="text-align:right">-0.83</td>
+    </tr><tr><td><a href="/currency/R01115/" />Бразильский реал</a></td>
+    <td style="text-align:right">BRL</td>
+    <td style="text-align:right">986</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">17.7607</td>
+    <td class="text-danger" style="text-align:right">-0.1500</td>
+    <td class="text-danger" style="text-align:right">-0.84</td>
+    </tr><tr><td><a href="/currency/R01135/" />Венгерский форинт</a></td>
+    <td style="text-align:right">HUF</td>
+    <td style="text-align:right">348</td>
+    <td style="text-align:right">100</td>
+    <td style="text-align:right">21.3490</td>
+    <td class="text-danger" style="text-align:right">-0.1593</td>
+    <td class="text-danger" style="text-align:right">-0.74</td>
+    </tr><tr><td><a href="/currency/R01215/" />Датская крона</a></td>
+    <td style="text-align:right">DKK</td>
+    <td style="text-align:right">208</td>
+    <td style="text-align:right">10</td>
+    <td style="text-align:right">88.5810</td>
+    <td class="text-danger" style="text-align:right">-0.7509</td>
+    <td class="text-danger" style="text-align:right">-0.84</td>
+    </tr><tr><td><a href="/currency/R01235/" />Доллар США</a></td>
+    <td style="text-align:right">USD</td>
+    <td style="text-align:right">840</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">59.7665</td>
+    <td class="text-danger" style="text-align:right">-0.4566</td>
+    <td class="text-danger" style="text-align:right">-0.76</td>
+    </tr><tr><td><a href="/currency/R01239/" />Евро</a></td>
+    <td style="text-align:right">EUR</td>
+    <td style="text-align:right">978</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">65.9882</td>
+    <td class="text-danger" style="text-align:right">-0.6366</td>
+    <td class="text-danger" style="text-align:right">-0.96</td>
+    </tr><tr><td><a href="/currency/R01270/" />Индийская рупия</a></td>
+    <td style="text-align:right">INR</td>
+    <td style="text-align:right">356</td>
+    <td style="text-align:right">100</td>
+    <td style="text-align:right">93.5020</td>
+    <td class="text-danger" style="text-align:right">-0.5599</td>
+    <td class="text-danger" style="text-align:right">-0.60</td>
+    </tr><tr><td><a href="/currency/R01335/" />Казахский тенге</a></td>
+    <td style="text-align:right">KZT</td>
+    <td style="text-align:right">398</td>
+    <td style="text-align:right">100</td>
+    <td style="text-align:right">31.8891</td>
+    <td class="text-danger" style="text-align:right">-0.2728</td>
+    <td class="text-danger" style="text-align:right">-0.85</td>
+    </tr><tr><td><a href="/currency/R01350/" />Канадский доллар</a></td>
+    <td style="text-align:right">CAD</td>
+    <td style="text-align:right">124</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">46.1304</td>
+    <td class="text-danger" style="text-align:right">-0.0742</td>
+    <td class="text-danger" style="text-align:right">-0.16</td>
+    </tr><tr><td><a href="/currency/R01370/" />Киргизский сом</a></td>
+    <td style="text-align:right">KGS</td>
+    <td style="text-align:right">417</td>
+    <td style="text-align:right">100</td>
+    <td style="text-align:right">98.0851</td>
+    <td class="text-danger" style="text-align:right">-0.6114</td>
+    <td class="text-danger" style="text-align:right">-0.62</td>
+    </tr><tr><td><a href="/currency/R01375/" />Китайский юань</a></td>
+    <td style="text-align:right">CNY</td>
+    <td style="text-align:right">156</td>
+    <td style="text-align:right">10</td>
+    <td style="text-align:right">96.2579</td>
+    <td class="text-danger" style="text-align:right">-0.7291</td>
+    <td class="text-danger" style="text-align:right">-0.75</td>
+    </tr><tr><td><a href="/currency/R01500/" />Молдавский лей</a></td>
+    <td style="text-align:right">MDL</td>
+    <td style="text-align:right">498</td>
+    <td style="text-align:right">10</td>
+    <td style="text-align:right">31.7653</td>
+    <td class="text-danger" style="text-align:right">-0.1410</td>
+    <td class="text-danger" style="text-align:right">-0.44</td>
+    </tr><tr><td><a href="/currency/R01535/" />Норвежская крона</a></td>
+    <td style="text-align:right">NOK</td>
+    <td style="text-align:right">578</td>
+    <td style="text-align:right">10</td>
+    <td style="text-align:right">73.3295</td>
+    <td class="text-danger" style="text-align:right">-0.1052</td>
+    <td class="text-danger" style="text-align:right">-0.14</td>
+    </tr><tr><td><a href="/currency/R01565/" />Польский злотый</a></td>
+    <td style="text-align:right">PLN</td>
+    <td style="text-align:right">985</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">15.9885</td>
+    <td class="text-danger" style="text-align:right">-0.1775</td>
+    <td class="text-danger" style="text-align:right">-1.10</td>
+    </tr><tr><td><a href="/currency/R01585/" />Новый румынский лей</a></td>
+    <td style="text-align:right">RON</td>
+    <td style="text-align:right">946</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">14.9555</td>
+    <td class="text-danger" style="text-align:right">-0.1350</td>
+    <td class="text-danger" style="text-align:right">-0.89</td>
+    </tr><tr><td><a href="/currency/R01589/" />СДР (специальные права заимствования)</a></td>
+    <td style="text-align:right">XDR</td>
+    <td style="text-align:right">960</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">83.5165</td>
+    <td class="text-danger" style="text-align:right">-0.7019</td>
+    <td class="text-danger" style="text-align:right">-0.83</td>
+    </tr><tr><td><a href="/currency/R01625/" />Сингапурский доллар</a></td>
+    <td style="text-align:right">SGD</td>
+    <td style="text-align:right">702</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">43.7689</td>
+    <td class="text-danger" style="text-align:right">-0.2764</td>
+    <td class="text-danger" style="text-align:right">-0.63</td>
+    </tr><tr><td><a href="/currency/R01670/" />Таджикский сомони</a></td>
+    <td style="text-align:right">TJS</td>
+    <td style="text-align:right">972</td>
+    <td style="text-align:right">10</td>
+    <td style="text-align:right">95.4736</td>
+    <td class="text-danger" style="text-align:right">-0.6603</td>
+    <td class="text-danger" style="text-align:right">-0.69</td>
+    </tr><tr><td><a href="/currency/R01700/" />Турецкая лира</a></td>
+    <td style="text-align:right">TRY</td>
+    <td style="text-align:right">949</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">21.5958</td>
+    <td class="text-danger" style="text-align:right">-0.1847</td>
+    <td class="text-danger" style="text-align:right">-0.85</td>
+    </tr><tr><td><a href="/currency/R01710/" />Новый туркменский манат</a></td>
+    <td style="text-align:right">TMT</td>
+    <td style="text-align:right">934</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">17.0883</td>
+    <td class="text-danger" style="text-align:right">-0.1257</td>
+    <td class="text-danger" style="text-align:right">-0.73</td>
+    </tr><tr><td><a href="/currency/R01717/" />Узбекский сум</a></td>
+    <td style="text-align:right">UZS</td>
+    <td style="text-align:right">860</td>
+    <td style="text-align:right">1000</td>
+    <td style="text-align:right">23.2103</td>
+    <td class="text-danger" style="text-align:right">-0.1955</td>
+    <td class="text-danger" style="text-align:right">-0.84</td>
+    </tr><tr><td><a href="/currency/R01720/" />Украинская гривна</a></td>
+    <td style="text-align:right">UAH</td>
+    <td style="text-align:right">980</td>
+    <td style="text-align:right">10</td>
+    <td style="text-align:right">27.1050</td>
+    <td class="text-danger" style="text-align:right">-0.1638</td>
+    <td class="text-danger" style="text-align:right">-0.60</td>
+    </tr><tr><td><a href="/currency/R01760/" />Чешская крона</a></td>
+    <td style="text-align:right">CZK</td>
+    <td style="text-align:right">203</td>
+    <td style="text-align:right">10</td>
+    <td style="text-align:right">24.4574</td>
+    <td class="text-danger" style="text-align:right">-0.2025</td>
+    <td class="text-danger" style="text-align:right">-0.82</td>
+    </tr><tr><td><a href="/currency/R01770/" />Шведская крона</a></td>
+    <td style="text-align:right">SEK</td>
+    <td style="text-align:right">752</td>
+    <td style="text-align:right">10</td>
+    <td style="text-align:right">69.7034</td>
+    <td class="text-danger" style="text-align:right">-0.8807</td>
+    <td class="text-danger" style="text-align:right">-1.25</td>
+    </tr><tr><td><a href="/currency/R01775/" />Швейцарский франк</a></td>
+    <td style="text-align:right">CHF</td>
+    <td style="text-align:right">756</td>
+    <td style="text-align:right">1</td>
+    <td style="text-align:right">62.0628</td>
+    <td class="text-danger" style="text-align:right">-0.3899</td>
+    <td class="text-danger" style="text-align:right">-0.62</td>
+    </tr><tr><td><a href="/currency/R01810/" />Южноафриканский рэнд</a></td>
+    <td style="text-align:right">ZAR</td>
+    <td style="text-align:right">710</td>
+    <td style="text-align:right">10</td>
+    <td style="text-align:right">47.5288</td>
+    <td class="text-danger" style="text-align:right">-0.1942</td>
+    <td class="text-danger" style="text-align:right">-0.41</td>
+    </tr><tr><td><a href="/currency/R01815/" />Вон Республики Корея</a></td>
+    <td style="text-align:right">KRW</td>
+    <td style="text-align:right">410</td>
+    <td style="text-align:right">1000</td>
+    <td style="text-align:right">51.5246</td>
+    <td class="text-danger" style="text-align:right">-0.0986</td>
+    <td class="text-danger" style="text-align:right">-0.19</td>
+    </tr><tr><td><a href="/currency/R01820/" />Японская иена</a></td>
+    <td style="text-align:right">JPY</td>
+    <td style="text-align:right">392</td>
+    <td style="text-align:right">100</td>
+    <td style="text-align:right">48.3450</td>
+    <td class="text-danger" style="text-align:right">-0.3654</td>
+    <td class="text-danger" style="text-align:right">-0.75</td>
+    </tr></tbody>
+</table>
+</div> 
+</div>
+<script src="/bootstrap/datepicker/js/bootstrap-datepicker.js"></script>
+<script src="/dt/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+	$('#ratetable').dataTable({
+	"bPaginate": false,
+	"bLengthChange": false,
+	"bInfo": false,	
+	"bFilter": false,
+	"aaSorting": [[ 0, "asc" ]]
+	});	
 
-<script type="text/javascript">
-<!--
-    $(function()
-    {
-        var mapContainer = $(".whole_site_map_container");
-        mapContainer.bind("get_whole_site_map", function (event, doneCallback) {
-            mapContainer.html("Загружается..."); //todo: loading icon?
-            $.ajax(
-                '/Catalog/SiteMap/GetWholeSite',
-                {
-                    type: "get",
-                    cache: true,
-                    traditional: true,
-                    data: { catalogId: '4031' },
-                    error: function () { mapContainer.html("Не удалось загрузить карту сайта. Попробуйте еще раз."); },
-                    success: function (data) { mapContainer.html(data); doneCallback(); }
-                });
-        });
-    });
-//-->
+});
+$(function(){
+$('#dp').datepicker()
+.on('changeDate', function(ev){
+self.location.href='?date='+$('#dp').data('date');
+});  
+});
+$(function(){
+$('#date1').datepicker()
+.on('changeDate', function(ev){
+self.location.href='?date1='+$('#date1').data('date')+'&date2='+$('#date2').data('date');
+});  
+});
+$(function(){
+$('#date2').datepicker()
+.on('changeDate', function(ev){
+self.location.href='?date1='+$('#date1').data('date')+'&date2='+$('#date2').data('date');
+});  
+});
 </script>
-
-
-<ul class="langs no_visited">
-<li class="selected"><b><!--noindex-->RU<!--/noindex--></b></li>
-<li><a href="/eng/currency_base/daily.aspx?date_req=.31.05.2014."><!--noindex-->EN<!--/noindex--></a></li>
-</ul>
-
-					<h1>Официальные курсы валют на заданную дату, устанавливаемые ежедневно</h1>
-										
-					<div id="content">
-						<div class="currency"> 
-						
-<script type="text/javascript">
-  $(function() {
-    $( "#datepicker").datepicker({
-      dateFormat: "dd.mm.yy",
-      changeMonth: true,
-      changeYear: true,
-      minDate: new Date(1992,1-1,1),
-      maxDate: new Date(2015, 6, 31)
-    })
-    .datepicker("setDate",new Date(2015, 6, 31))
-    .change(function(){
-	var date = $(this).datepicker( "getDate" );
-	$("input[name=date_req]").val($.datepicker.formatDate("dd.mm.yy",date));
-	$("form[name=cld]").submit();
-    });
-  });
-</script>
-
-
-
-<form name="cld">
-
-<div id="datepicker"></div>
-<input name="date_req" type="hidden" value="" />
-
-
-</form>
-
-						
-							<!--#FILEID:110607#-->
-
-<p>Официальные курсы иностранных валют по&nbsp;отношению к&nbsp;рублю устанавливаются Центральным банком Российской Федерации без обязательства покупать или продавать указанные валюты по&nbsp;данному курсу. Официальные курсы иностранных валют по&nbsp;отношению к&nbsp;рублю устанавливаются ежедневно (по&nbsp;рабочим дням) приказом Банка России, вступают в&nbsp;силу на&nbsp;следующий календарный день после дня установления и&nbsp;действуют до&nbsp;вступления в&nbsp;силу следующего приказа Банка России о&nbsp;курсах иностранных валют.</p>
-<ul class="without_dash without_indent">
-	<li><a href="Print.asp?File=P1.htm" target="_blank">Перечень иностранных валют, официальные курсы которых по&nbsp;отношению к&nbsp;рублю устанавливаются Банком России ежедневно (по&nbsp;рабочим дням)</a></li>
-	<li>
-		<p class="file PDF small_icon"><a href="/currency_base/286-p.pdf" target="_blank"><i class="icon"></i>Положение Банка России от&nbsp;18.04.2006 &#8470;&nbsp;286-П &laquo;Об&nbsp;установлении и&nbsp;опубликовании Центральным банком Российской Федерации официальных курсов иностранных валют по&nbsp;отношению к&nbsp;рублю&raquo;</a></p>
-	</li>
-	<li>
-		<p class="file PDF small_icon"><a href="/currency_base/6t_kurs.pdf" target="_blank"><i class="icon"></i>Об&nbsp;определении курсов иностранных валют по&nbsp;отношению к&nbsp;рублю, официальные курсы которых не&nbsp;устанавливаются Банком России</a></p>
-	</li>
-	<li><a target="_blank" href="/pw.aspx?file=/currency_base/101231_1020443.htm">Об&nbsp;определении курсов иностранных валют, выводимых из&nbsp;обращения в&nbsp;связи с&nbsp;изменениями в&nbsp;денежном обращении соответствующих иностранных государств, по&nbsp;отношению к&nbsp;рублю</a></li>
-	<li><a target="_blank" href="/press/PR.aspx?file=14012014_100019Lat.htm">Об&nbsp;исключении национальной валюты Латвии из&nbsp;перечня иностранных валют, официальные курсы которых по&nbsp;отношению к&nbsp;рублю устанавливаются Банком России</a></li>
-	<li>
-	<a target="_blank" href="/press/PR.aspx?file=26122014_171221if2014-12-26T17_09_35.htm">
-	О перечне иностранных валют, официальные курсы которых по отношению к рублю 
-	устанавливаются Банком России</a></li>
-</ul>
-
-<p>Информация о&nbsp;курсах иностранных валют по&nbsp;отношению к&nbsp;рублю, опубликованная на&nbsp;официальном сайте Банка России в&nbsp;сети Интернет, является официальной информацией Банка России и&nbsp;не&nbsp;требует дополнительного письменного подтверждения от&nbsp;Банка России.</p>
-<p>
-	В&nbsp;соответствии с&nbsp;п.&nbsp;3&nbsp;ст.&nbsp;19&nbsp;и&nbsp;п.&nbsp;3&nbsp;ст.&nbsp;20&nbsp;Федерального закона от&nbsp;9&nbsp;февраля 2009 года №&nbsp;<nobr>8-ФЗ</nobr>
-	«Об&nbsp;обеспечении доступа к&nbsp;информации о&nbsp;деятельности государственных органов и&nbsp;органов местного самоуправления» Банк России вправе не&nbsp;предоставлять информацию по&nbsp;запросу, если эта информация размещена на&nbsp;его официальном сайте в&nbsp;сети Интернет, и&nbsp;при ответе на&nbsp;такой запрос может ограничиться указанием электронного адреса официального сайта, на&nbsp;котором размещена запрашиваемая информация.
+﻿<noindex>
+<footer class="footer" style="text-align: left;">
+<div class="container">
+<p class="text-center">
+<a href="http://katashi.ru/contact">Контакты</a>&nbsp;&nbsp;
+<a href="http://katashi.ru/cooperation">Для МФО</a>&nbsp;&nbsp;
+<a href="http://katashi.ru/advertising">Реклама</a>&nbsp;&nbsp;
+<a href="http://forum.katashi.ru">Форум</a>&nbsp;&nbsp;
+<a href="http://katashi.ru/sitemap">Карта сайта</a>&nbsp;&nbsp;
+<a target="_blank" href="http://serialfor.me/">Рейтинг сериалов</a>&nbsp;&nbsp;
+<a target="_blank" href="http://russia-apple.com/">Заявка на кредит</a>
 </p>
-
-<ul class="without_dash without_indent">
-	<li><a target="_blank" href="/pw.aspx?file=/currency_base/121019_1202524.htm">Об&nbsp;использовании данных о&nbsp;курсах иностранных валют по&nbsp;отношению к&nbsp;рублю, опубликованных на&nbsp;сайте Банка России</a></li>
-	<li><a href="/ireception/?Prtid=dofr_q_cur" target="_blank">Вопросы и&nbsp;ответы по&nbsp;теме &laquo;Курсы иностранных валют по&nbsp;отношению к&nbsp;рублю&raquo;</a></li>
-</ul>
-<p><a href="/ireception/Default.aspx?Prtid=ir&MsgId=currency_base" target="_blank"><strong>Направить обращение</strong> по&nbsp;теме «Курсы иностранных валют по&nbsp;отношению к&nbsp;рублю»</a></p>
-<p><em>Для сокращения сроков рассмотрения обращения необходимо заполнить поле «Регион», даже если в&nbsp;форме обращения указан вариант «Ответ направить по&nbsp;электронной почте».</em></p>
-<p><a href="/ireception/Default.aspx?Prtid=ir&MsgId=dpb_34" target="_blank"><strong>Направить обращение</strong> по&nbsp;теме «Основные производные показатели динамики обменного курса рубля»</a></p>
-
-							<a href="javascript:window.print();" class="print_link"><span>Печать</span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="clear">
-		</div>
-		<div id="for_footer">
-		</div>
-		<div id="footer">
-			
-<div class="wrap cleared no_visited">
-                <i class="icon"></i>
-                <ul id="bottommenu" class="menu cleared">
-<li><a href="/About/">О&#160;сайте</a></li><li><a href="/archive/">Архив</a></li><li><a href="/sitemap/">Поиск и&#160;карта сайта</a></li><li><a href="/links/">Другие ресурсы</a></li>
-                </ul>
-		<div class="col copy">&copy; Банк России, 2000–2015</div>
-		<form action="/search/" method="get" class="search">
-			<input type="search" class="text empty" results="10" placeholder="Поиск" name="text" value="">
-			<input type="submit" class="submit" value="Найти">
-		</form>
-
-                <div class="col networks">
-	<a target="_blank" href="http://www.youtube.com/BankofRussia">
-		<i class="icon icon_youtube_bw"></i>
-		<i class="icon icon_youtube_color"></i>
-	</a>
+<p class="text-center">©&nbsp;&nbsp;2012-2015 Katashi.ru</p>
+<p class="text-center">
+<script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t44.1;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='31' height='31'><\/a>")
+//--></script>
+</p>
 </div>
-<div class="col contacts">
-       <p>Адрес: ул. Неглинная, 12, Москва, 107016</p>
-       <p>Телефоны: 8 800 250-40-72 (для бесплатных звонков из регионов России), +7 495 771-91-00 (круглосуточно, по рабочим дням), факс: +7 495 621-64-65</p>
-       <p><a href="/pw.aspx?file=/other/help.htm">Контактная информация</a></p>
-<p><a href="/press/print.aspx?file=press_centre/sms.htm">Банк России не рассылает SMS-сообщения</a></p>
-       <p>Вся официальная контактная информация Банка России представлена на официальном сайте Банка России <a href="http://www.cbr.ru">www.cbr.ru</a></p>
-<p>По вопросам, связанным с работой сайта, обращайтесь по адресу: <a href="mailto:webmaster@www.cbr.ru">webmaster@www.cbr.ru</a></p>
-	<script type="text/javascript">// <![CDATA[
-		var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-22609725-1']);
-			_gaq.push(['_trackPageview']);
-							
-			(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-		// ]]>
-	</script>
-	<!-- Yandex.Metrika counter -->
-	<div style="display: none;">
-		<script type="text/javascript">// <![CDATA[
-			(function(w, c) {
-				(w[c] = w[c] || []).push(function() {
-					try {
-						w.yaCounter5774506 = new Ya.Metrika(5774506);
-							yaCounter5774506.clickmap(true);
-							yaCounter5774506.trackLinks(true);
-										
-					} catch(e) { }
-				});
-			})(window, 'yandex_metrika_callbacks');
+</footer>
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter23228071 = new Ya.Metrika({id:23228071,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
 
-		(function() {
-			var ym = document.createElement('script'); ym.type = 'text/javascript'; ym.async = true;
-			ym.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'mc.yandex.ru/metrika/watch.js';
-			var yms = document.getElementsByTagName('script')[0]; yms.parentNode.insertBefore(ym, yms);
-			})();
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 
-			// ]]>
-		</script>
-	</div>
-	<noscript><div><img src="http://mc.yandex.ru/watch/5774506" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-	<!-- /Yandex.Metrika counter -->
-</div>
-</div>
-
-
-		</div>
-	</div>
-</body>
-</html>
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/23228071" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+</noindex>     
+</body></html>
