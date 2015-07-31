@@ -1,10 +1,10 @@
 <html>
 <head>
-    <title>Курс валют. </title>
+    <title>Парсер для Баша</title>
 </head>
-<h2>Парсер получения курса валют</h2>
-<form name="getDateFrom" method="get" action="/test_curl/functions.php">
-    <label>Введите год(дд/мм.гггг):<input type="text" name="putDate" placeholder="Введите день"></label>
+<h2>Парсер получения баша</h2>
+<form name="getDateFrom" method="get" action="/test_bash/functions.php">
+    <label>Старница:<input type="text" name="putDate" placeholder="номер страницы"></label>
     <input type="submit" value="Запросить">
 </form>
 </html>

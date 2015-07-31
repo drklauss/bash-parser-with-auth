@@ -1,17 +1,21 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
 include_once 'simple_html_dom.php';
 if (isset($_GET['putDate'])) {
-    $dateIn = $_GET['putDate'];
-    getCurl($dateIn);
-    //showResultParser();
+    $index = $_GET['putDate'];
+    getCurl($index);
 }
-
-
-function getCurl($dateIn)
+function getCurl($index)
 {
-    $data = file_get_html("http://katashi.ru/currency/?date=.$dateIn.");
-    foreach ($data->find('table#ratetable') as $element) {
-        echo "$element<br>";
+    $data = file_get_html("http://bash.im/index/" . $index . "");
+    $arr = array();
+    $i = 0;
+    foreach ($data->find('.quote') as $j) {
+        foreach ($data->find('.text,.id') as $element) {
+            $arr[] = "$element";
+        }
     }
+
+    echo '<pre>';
+    print_r($arr);
+    echo '</pre>';
 }
