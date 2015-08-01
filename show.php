@@ -1,7 +1,7 @@
 <?php
 include_once ('smarty/Smarty.class.php');
-function showDateForm()
+function showGrubPageForm()
 {
-    $getDateForm = new Smarty();
-    $getDateForm->display('form.tpl');
+    $getPageForm = new Smarty();
+    $getPageForm->display('form.tpl');
 }

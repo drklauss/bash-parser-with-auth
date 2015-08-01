@@ -4,7 +4,8 @@ connectDB();
 if (isset($_GET['putDate'])) {
     $index = $_GET['putDate'];
     $gBi = getBashIndexes($index);
-    getBashQuotes($index);
+    $gBq = getBashQuotes($index);
+    mergeArrays($gBi, $gBq);
     checkIndexesInDb($gBi);
 }
 /**
@@ -35,6 +36,28 @@ function getBashQuotes($index)
     return $arrQuotes;
 }
 
+/**
+ * @param array $arrayIndexes
+ * @param array $arrayQuotes
+ */
+function mergeArrays(array $arrayIndexes, array $arrayQuotes)
+{
+    $final = array();
+    for ($i = 0; $i <= 50; $i++) {
+        foreach ($arrayIndexes as $index) {
+            $final[$i]['index'] = $index;
+            foreach ($arrayQuotes as $quote) {
+                $final[$i]['quote'] = $quote;
+            }
+
+        }
+    }
+    echo '<pre>';
+    print_r($final);
+    echo '</pre>';
+}
+
+
 function connectDB()
 {
     $host = 'localhost';
@@ -47,7 +70,7 @@ function connectDB()
     mysql_select_db('bash');
 }
 
-function checkIndexesInDb(array $arrIndexes)
+/*function checkIndexesInDb(array $arrIndexes)
 {
   foreach ($arrIndexes as $checkIndex) {
         $query = mysql_query("SELECT indexQoutes FROM qoutes WHERE indexQoutes='{$checkIndex}'");
@@ -60,4 +83,4 @@ function checkIndexesInDb(array $arrIndexes)
           "INSERT INTO qoutes (idQoutes,indexQoutes,textQoutes) VALUES (NULL ,'{$setIndexes}','0000000000')"
         );
     };
-}
+}*/
