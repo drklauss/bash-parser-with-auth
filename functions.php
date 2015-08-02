@@ -1,14 +1,18 @@
 <?php
 include_once 'simple_html_dom.php';
 connectDB();
-if (isset($_GET['putDate'])) {
-    $index = $_GET['putDate'];
+if (isset($_GET['grubPage'])) {
+    $index = $_GET['grubPage'];
     $gBi = getBashIndexes($index);
     $gBq = getBashQuotes($index);
-    mergeArrays($gBi, $gBq);
-    checkIndexesInDb($gBi);
+    $mergedArray = mergeArrays($gBi, $gBq);
+    putQuotesIntoDB($mergedArray);
+    echo '<pre>';
+    print_r($mergedArray);
+    echo '</pre>';
 }
 /**
+ *
  * @param $index
  * @return array
  */
@@ -31,7 +35,7 @@ function getBashQuotes($index)
     $data = file_get_html("http://bash.im/index/" . $index . "");
     $arrQuotes = array();
     foreach ($data->find('.text') as $quoteText) {
-        $arrQuotes[] = $quoteText->plaintext;
+        $arrQuotes[] = iconv('windows-1251','utf-8',$quoteText->plaintext);
     }
     return $arrQuotes;
 }
@@ -39,22 +43,16 @@ function getBashQuotes($index)
 /**
  * @param array $arrayIndexes
  * @param array $arrayQuotes
+ * @return array
  */
 function mergeArrays(array $arrayIndexes, array $arrayQuotes)
 {
-    $final = array();
-    for ($i = 0; $i <= 50; $i++) {
-        foreach ($arrayIndexes as $index) {
-            $final[$i]['index'] = $index;
-            foreach ($arrayQuotes as $quote) {
-                $final[$i]['quote'] = $quote;
-            }
-
-        }
+    $mergedArray = array();
+    foreach ($arrayIndexes as $key => $index) {
+        $mergedArray[$key]['index'] = $index;
+        $mergedArray[$key]['quote'] = $arrayQuotes[$key];
     }
-    echo '<pre>';
-    print_r($final);
-    echo '</pre>';
+    return $mergedArray;
 }
 
 
@@ -70,17 +68,11 @@ function connectDB()
     mysql_select_db('bash');
 }
 
-/*function checkIndexesInDb(array $arrIndexes)
+function putQuotesIntoDB(array $merged)
 {
-  foreach ($arrIndexes as $checkIndex) {
-        $query = mysql_query("SELECT indexQoutes FROM qoutes WHERE indexQoutes='{$checkIndex}'");
-        $delIndex= mysql_result($query,0,0);// выдает ошибку, если такого в базе нет
-        print_r($delIndex);
-        unset($arrIndexes[array_search($delIndex, $arrIndexes)]);
-    }
-        foreach ($arrIndexes as $setIndexes) {
+    for ($i = 0; $i <= 49; $i++) {
         mysql_query(
-          "INSERT INTO qoutes (idQoutes,indexQoutes,textQoutes) VALUES (NULL ,'{$setIndexes}','0000000000')"
+            "INSERT INTO quotes (idQuotes,indexQuotes,textQuotes) VALUES (NULL,'{$merged[$i]['index']}','{$merged[$i]['quote']}')"
         );
     };
-}*/
+}

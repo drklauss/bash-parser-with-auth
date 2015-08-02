@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.24, created on 2015-07-31 23:29:20
+<?php /* Smarty version 3.1.24, created on 2015-08-01 16:13:01
          compiled from "./templates/form.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:1614555bbcc90c69949_27188763%%*/
+/*%%SmartyHeaderCode:1128055bcb7cd8b0188_78141498%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,20 +9,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'eccf3f832afd6b2fc8c75b58e4cdb3e2363ae4bc' => 
     array (
       0 => './templates/form.tpl',
-      1 => 1438367188,
+      1 => 1438426247,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1614555bbcc90c69949_27188763',
+  'nocache_hash' => '1128055bcb7cd8b0188_78141498',
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_55bbcc90cc2b29_04694173',
+  'unifunc' => 'content_55bcb7cd92a150_89547061',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_55bbcc90cc2b29_04694173')) {
-function content_55bbcc90cc2b29_04694173 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_55bcb7cd92a150_89547061')) {
+function content_55bcb7cd92a150_89547061 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '1614555bbcc90c69949_27188763';
+$_smarty_tpl->properties['nocache_hash'] = '1128055bcb7cd8b0188_78141498';
 ?>
 <html>
 <head>
@@ -30,7 +30,7 @@ $_smarty_tpl->properties['nocache_hash'] = '1614555bbcc90c69949_27188763';
 </head>
 <h2>Парсер получения баша</h2>
 <form name="getDateFrom" method="get" action="/test_bash/functions.php">
-    <label>Старница: <input type="text" name="putDate" placeholder="Номер страницы"></label>
+    <label>Старница: <input type="text" name="grubPage" placeholder="Номер страницы"></label>
     <input type="submit" value="Запросить">
 </form>
 </html><?php }
