@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 include_once 'simple_html_dom.php';
 connectDB();
 if (isset($_GET['grubPage'])) {
@@ -6,6 +7,7 @@ if (isset($_GET['grubPage'])) {
     $gBi = getBashIndexes($index);
     $gBq = getBashQuotes($index);
     $mergedArray = mergeArrays($gBi, $gBq);
+//    testValue($mergedArray);
     putQuotesIntoDB($mergedArray);
     echo '<pre>';
     print_r($mergedArray);
@@ -21,7 +23,7 @@ function getBashIndexes($index)
     $data = file_get_html("http://bash.im/index/" . $index . "");
     $arrIndexes = array();
     foreach ($data->find('.id') as $quoteId) {
-        $arrIndexes[] = $quoteId->plaintext;
+        $arrIndexes[] = str_replace("#", "", $quoteId->plaintext);
     }
     return $arrIndexes;
 }
@@ -35,7 +37,7 @@ function getBashQuotes($index)
     $data = file_get_html("http://bash.im/index/" . $index . "");
     $arrQuotes = array();
     foreach ($data->find('.text') as $quoteText) {
-        $arrQuotes[] = iconv('windows-1251','utf-8',$quoteText->plaintext);
+        $arrQuotes[] = iconv('windows-1251', 'utf-8', $quoteText->plaintext);
     }
     return $arrQuotes;
 }
@@ -71,8 +73,22 @@ function connectDB()
 function putQuotesIntoDB(array $merged)
 {
     for ($i = 0; $i <= 49; $i++) {
-        mysql_query(
-            "INSERT INTO quotes (idQuotes,indexQuotes,textQuotes) VALUES (NULL,'{$merged[$i]['index']}','{$merged[$i]['quote']}')"
-        );
+        $count = mysql_query("SELECT COUNT(*) FROM qoutes WHERE indexQoutes='{$merged[$i]['index']}'");
+        echo $count;
+        if (!$count) {
+            mysql_query(
+                "INSERT INTO quotes (idQuotes,indexQuotes,textQuotes) VALUES (NULL,'{$merged[$i]['index']}','{$merged[$i]['quote']}')"
+            );
+        }
     };
+}
+
+function testValue(array $merged)
+{
+    for ($i = 0; $i <= 49; $i++) {
+        $count = mysql_query("SELECT COUNT(*) AS 'count' FROM quotes WHERE indexQuotes='{$merged[$i]['index']}'
+");
+        echo $count;
+    }
+
 }
