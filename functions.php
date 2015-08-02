@@ -7,7 +7,6 @@ if (isset($_GET['grubPage'])) {
     $gBi = getBashIndexes($index);
     $gBq = getBashQuotes($index);
     $mergedArray = mergeArrays($gBi, $gBq);
-//    testValue($mergedArray);
     putQuotesIntoDB($mergedArray);
     echo '<pre>';
     print_r($mergedArray);
@@ -73,22 +72,12 @@ function connectDB()
 function putQuotesIntoDB(array $merged)
 {
     for ($i = 0; $i <= 49; $i++) {
-        $count = mysql_query("SELECT COUNT(*) FROM qoutes WHERE indexQoutes='{$merged[$i]['index']}'");
-        echo $count;
-        if (!$count) {
+        $query = mysql_query("SELECT idQuotes FROM quotes WHERE indexQuotes='{$merged[$i]['index']}'");
+        $getSimilar = mysql_fetch_array($query, MYSQL_NUM);
+        if (!$getSimilar) {
             mysql_query(
                 "INSERT INTO quotes (idQuotes,indexQuotes,textQuotes) VALUES (NULL,'{$merged[$i]['index']}','{$merged[$i]['quote']}')"
             );
         }
     };
 }
-
-/*function testValue(array $merged)
-{
-    for ($i = 0; $i <= 49; $i++) {
-        $count = mysql_query("SELECT COUNT(*) AS 'count' FROM quotes WHERE indexQuotes='{$merged[$i]['index']}'
-");
-        echo $count;
-    }
-
-}*/
