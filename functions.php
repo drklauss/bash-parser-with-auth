@@ -83,7 +83,7 @@ function putQuotesIntoDB(array $merged)
     };
 }
 
-function testValue(array $merged)
+/*function testValue(array $merged)
 {
     for ($i = 0; $i <= 49; $i++) {
         $count = mysql_query("SELECT COUNT(*) AS 'count' FROM quotes WHERE indexQuotes='{$merged[$i]['index']}'
@@ -91,4 +91,4 @@ function testValue(array $merged)
         echo $count;
     }
 
-}
+}*/
