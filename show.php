@@ -5,3 +5,6 @@ function showGrubPageForm()
     $getPageForm = new Smarty();
     $getPageForm->display('form.tpl');
 }
+function showParsingPage($start){
+
+}

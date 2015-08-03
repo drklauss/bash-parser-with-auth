@@ -3,8 +3,9 @@
     <title>Парсер для Баша</title>
 </head>
 <h2>Парсер получения баша</h2>
-<form name="getDateFrom" method="get" action="/test_bash/functions.php">
-    <label>Старница: <input type="text" name="grubPage" placeholder="Номер страницы"></label>
+<form name="getDateFrom" method="get" action="/test_bash/index.php">
+    <label>Начальная страница: <input type="text" name="grubPageStart" placeholder="Номер страницы"></label>
+    <label>Конечная страница: <input type="text" name="grubPageFinish" placeholder="Номер страницы"></label>
     <input type="submit" value="Запросить">
 </form>
 </html>
