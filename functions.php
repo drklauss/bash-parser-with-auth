@@ -1,19 +1,27 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 include_once 'simple_html_dom.php';
-connectDB();
-if (isset($_GET['grubPage'])) {
-    $index = $_GET['grubPage'];
-    $gBi = getBashIndexes($index);
-    $gBq = getBashQuotes($index);
-    $mergedArray = mergeArrays($gBi, $gBq);
-    putQuotesIntoDB($mergedArray);
-    echo '<pre>';
-    print_r($mergedArray);
-    echo '</pre>';
+
+function parsingPages()
+{
+    set_time_limit(300);
+    if (isset($_GET['grubPageStart']) & isset($_GET['grubPageFinish'])) {
+        $startPage = $_GET['grubPageStart'];
+        $finishPage = $_GET['grubPageFinish'];
+        while ($startPage <= $finishPage) {
+            ob_flush();
+            flush();
+            echo "Парсим {$startPage} страницу...<br>";
+            $gBi = getBashIndexes($startPage);
+            $gBq = getBashQuotes($startPage);
+            $mergedArray = mergeArrays($gBi, $gBq);
+            putQuotesIntoDB($mergedArray);
+            $startPage++;
+        }
+    }
 }
+
 /**
- *
  * @param $index
  * @return array
  */
@@ -56,28 +64,51 @@ function mergeArrays(array $arrayIndexes, array $arrayQuotes)
     return $mergedArray;
 }
 
+/**
+ * @param $host
+ * @param $user
+ * @param $password
+ */
+function connectDB($host, $user, $password)
+{
+    if (mysql_connect($host, $user, $password)) {
+//        echo 'Соединение с БД  установлено...<br>';
+        if (mysql_select_db('bash')) {
+//            echo 'База данных \'bash\' выбрана...<br>';
+            mysql_query('CREATE TABLE IF NOT EXISTS quotes (idQuotes INT AUTO_INCREMENT, indexQuotes INT, textQuotes TEXT, PRIMARY KEY (idQuotes))');
+        } else {
+            if (mysql_query('CREATE DATABASE BASH')) {
+                echo 'База данных успешно создана...<br>';
+                if (mysql_select_db('bash')) {
+                    echo 'База данных \'bash\' выбрана...<br>';
+                    if (mysql_query('CREATE TABLE IF NOT EXISTS quotes (idQuotes INT AUTO_INCREMENT, indexQuotes INT, textQuotes TEXT, PRIMARY KEY (idQuotes))')) {
+                        echo 'Таблица quotes успешно создана...<br>';
+                    }
+                }
+            }
+        }
+    } else echo 'Соединения с базой данных нет...';
+}
 
-function connectDB()
+/**
+ * @param array $merged
+ */
+
+function putQuotesIntoDB(array $merged)
 {
     $host = 'localhost';
     $user = 'root';
     $password = '';
-    if (!mysql_connect($host, $user, $password)) {
-        echo 'нет подключения';
-        exit;
-    }
-    mysql_select_db('bash');
-}
-
-function putQuotesIntoDB(array $merged)
-{
+    connectDB($host, $user, $password);
     for ($i = 0; $i <= 49; $i++) {
         $query = mysql_query("SELECT idQuotes FROM quotes WHERE indexQuotes='{$merged[$i]['index']}'");
         $getSimilar = mysql_fetch_array($query, MYSQL_NUM);
         if (!$getSimilar) {
             mysql_query(
-                "INSERT INTO quotes (idQuotes,indexQuotes,textQuotes) VALUES (NULL,'{$merged[$i]['index']}','{$merged[$i]['quote']}')"
+                "INSERT INTO quotes (idQuotes,indexQuotes, textQuotes) VALUES (NULL,'{$merged[$i]['index']}','{$merged[$i]['quote']}')"
             );
+
         }
     };
+   // echo 'Данные успешно занесены в таблицу...<br>';
 }
