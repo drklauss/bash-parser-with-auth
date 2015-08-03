@@ -1,7 +1,11 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 include_once 'simple_html_dom.php';
-connectDB();
+$host = 'localhost';
+$user = 'root';
+$password = '';
+connectDB($host, $user, $password);
+
 if (isset($_GET['grubPage'])) {
     $index = $_GET['grubPage'];
     $gBi = getBashIndexes($index);
@@ -56,19 +60,37 @@ function mergeArrays(array $arrayIndexes, array $arrayQuotes)
     return $mergedArray;
 }
 
-
-function connectDB()
+/**
+ * @param $host
+ * @param $user
+ * @param $password
+ */
+function connectDB($host, $user, $password)
 {
-    $host = 'localhost';
-    $user = 'root';
-    $password = '';
-    if (!mysql_connect($host, $user, $password)) {
-        echo 'нет подключения';
-        exit;
-    }
-    mysql_select_db('bash');
+    if (mysql_connect($host, $user, $password)) {
+        echo 'Соединение с БД  установлено...<br>';
+        if (mysql_select_db('bash')) {
+            echo 'База данных \'bash\' выбрана...<br>';
+            if (mysql_query('CREATE TABLE IF NOT EXISTS quotes(idQuotes INT AUTO_INCREMENT, indexQuotes INT, textQuotes TEXT, PRIMARY KEY (idQuotes))')) {
+                echo 'Создана не существовавщая в БД таблица quotes...<br>';
+            }
+        } else {
+            if (mysql_query('CREATE DATABASE BASH')) {
+                echo 'База данных успешно создана...<br>';
+                if (mysql_select_db('bash')) {
+                    echo 'База данных \'bash\' выбрана...<br>';
+                    if (mysql_query('CREATE TABLE IF NOT EXISTS quotes(idQuotes INT AUTO_INCREMENT, indexQuotes INT, textQuotes TEXT, PRIMARY KEY (idQuotes))')) {
+                        echo 'Таблица quotes успешно создана...<br>';
+                    }
+                }
+            }
+        }
+    } else echo 'Соединения с базой данных нет...';
 }
 
+/**
+ * @param array $merged - merged arrays
+ */
 function putQuotesIntoDB(array $merged)
 {
     for ($i = 0; $i <= 49; $i++) {
@@ -76,7 +98,7 @@ function putQuotesIntoDB(array $merged)
         $getSimilar = mysql_fetch_array($query, MYSQL_NUM);
         if (!$getSimilar) {
             mysql_query(
-                "INSERT INTO quotes (idQuotes,indexQuotes,textQuotes) VALUES (NULL,'{$merged[$i]['index']}','{$merged[$i]['quote']}')"
+                "INSERT INTO quotes (idQuotes,indexQuotes, textQuotes) VALUES (NULL,'{$merged[$i]['index']}','{$merged[$i]['quote']}')"
             );
         }
     };
