@@ -22,7 +22,6 @@ function parsingPages()
 }
 
 /**
- *
  * @param $index
  * @return array
  */
