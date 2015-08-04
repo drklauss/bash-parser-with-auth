@@ -9,12 +9,9 @@ function parsingPages()
         $startPage = $_GET['grubPageStart'];
         $finishPage = $_GET['grubPageFinish'];
         while ($startPage <= $finishPage) {
-            ob_flush();
-            flush();
             echo "Парсим {$startPage} страницу...<br>";
-            $gBi = getBashIndexes($startPage);
-            $gBq = getBashQuotes($startPage);
-            $mergedArray = mergeArrays($gBi, $gBq);
+            flush();
+            $mergedArray = getBashArray($startPage);
             putQuotesIntoDB($mergedArray);
             $startPage++;
         }
@@ -25,44 +22,25 @@ function parsingPages()
  * @param $index
  * @return array
  */
-function getBashIndexes($index)
+function getBashArray($index)
 {
     $data = file_get_html("http://bash.im/index/" . $index . "");
     $arrIndexes = array();
     foreach ($data->find('.id') as $quoteId) {
         $arrIndexes[] = str_replace("#", "", $quoteId->plaintext);
     }
-    return $arrIndexes;
-}
-
-/**
- * @param $index
- * @return array
- */
-function getBashQuotes($index)
-{
-    $data = file_get_html("http://bash.im/index/" . $index . "");
     $arrQuotes = array();
     foreach ($data->find('.text') as $quoteText) {
         $arrQuotes[] = iconv('windows-1251', 'utf-8', $quoteText->plaintext);
     }
-    return $arrQuotes;
-}
-
-/**
- * @param array $arrayIndexes
- * @param array $arrayQuotes
- * @return array
- */
-function mergeArrays(array $arrayIndexes, array $arrayQuotes)
-{
     $mergedArray = array();
-    foreach ($arrayIndexes as $key => $index) {
+    foreach ($arrIndexes as $key => $index) {
         $mergedArray[$key]['index'] = $index;
-        $mergedArray[$key]['quote'] = $arrayQuotes[$key];
+        $mergedArray[$key]['quote'] = $arrQuotes[$key];
     }
     return $mergedArray;
 }
+
 
 /**
  * @param $host
@@ -100,7 +78,7 @@ function putQuotesIntoDB(array $merged)
     $user = 'root';
     $password = '';
     connectDB($host, $user, $password);
-    for ($i = 0; $i <= 49; $i++) {
+    for ($i = 0; $i < count($merged); $i++) {
         $query = mysql_query("SELECT idQuotes FROM quotes WHERE indexQuotes='{$merged[$i]['index']}'");
         $getSimilar = mysql_fetch_array($query, MYSQL_NUM);
         if (!$getSimilar) {
@@ -110,5 +88,4 @@ function putQuotesIntoDB(array $merged)
 
         }
     };
-   // echo 'Данные успешно занесены в таблицу...<br>';
-}
+    }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/test_cURL.iml" filepath="$PROJECT_DIR$/.idea/test_cURL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/bash.local.iml" filepath="$PROJECT_DIR$/.idea/bash.local.iml" />
     </modules>
   </component>
 </project>
