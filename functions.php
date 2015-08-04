@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 include_once 'simple_html_dom.php';
+include_once('config.php');
 
 function parsingPages()
 {
@@ -70,14 +71,13 @@ function connectDB($host, $user, $password)
 
 /**
  * @param array $merged
+ * @param $host
+ * @param $user
+ * @param $password
  */
-
-function putQuotesIntoDB(array $merged)
+function putQuotesIntoDB(array $merged,$host, $user,$password)
 {
-    $host = 'localhost';
-    $user = 'root';
-    $password = '';
-    connectDB($host, $user, $password);
+        connectDB($host, $user, $password);
     for ($i = 0; $i < count($merged); $i++) {
         $query = mysql_query("SELECT idQuotes FROM quotes WHERE indexQuotes='{$merged[$i]['index']}'");
         $getSimilar = mysql_fetch_array($query, MYSQL_NUM);
