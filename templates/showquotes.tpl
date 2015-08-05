@@ -1,9 +1,10 @@
 <html>
 <head>
-    <title>Цитаты Баша. </title>
     <link rel="stylesheet" href="/style.css" type="text/css" media="screen"/>
-</head>
+    <title>Цитаты Баша. </title>
+    </head>
 <body>
+
 <div id="body">
     <div class="index">
         #{$showIndex}</div>

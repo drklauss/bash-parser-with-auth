@@ -1,8 +1,8 @@
 <?php
-include_once('smarty/Smarty.class.php');
-include_once('config.php');
+include_once 'smarty/Smarty.class.php';
 function showGrubPageForm()
 {
+
     $getPageForm = new Smarty();
     $getPageForm->display('parser.tpl');
 }
@@ -12,9 +12,9 @@ function showGrubPageForm()
  * @param $user
  * @param $password
  */
-function showQuotes($host,$user,$password)
+function showRandomQuotes($host, $user, $password)
 {
-    connectDB($host, $user, $password);
+        connectDB($host, $user, $password);
     $selectRange = mysql_query('SELECT min(idQuotes),max(idQuotes) FROM quotes');
     $count = mysql_fetch_row($selectRange);
     $randArray = array();
@@ -30,4 +30,12 @@ function showQuotes($host,$user,$password)
         $smarty->assign('showQuote', nl2br($showQuotes[1]));
         $smarty->display('showQuotes.tpl');
     }
+
+}
+
+function showLogInForm()
+{
+    $showLogIn = new Smarty();
+    $showLogIn->assign('showLogIn');
+    $showLogIn->display('login.tpl');
 }
