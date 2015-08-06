@@ -1,4 +1,5 @@
 <?php
-$host = 'localhost';
-$userDB = 'root';
-$passwordDB = '';
+define ('DB_HOST','localhost');
+define ('DB_USER','root');
+define ('DB_PASSWORD','');
+define ('SALT','colbasa');

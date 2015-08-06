@@ -2,13 +2,9 @@
 header('Content-Type: text/html; charset=utf-8');
 include_once 'simple_html_dom.php';
 include_once('config.php');
-/**
- * @param $host
- * @param $user
- * @param $password
- */
 
-function parsingPages($host, $user, $password)
+
+function parsingPages()
 {
     set_time_limit(300);
     if (isset($_GET['grubPageStart']) & isset($_GET['grubPageFinish'])) {
@@ -19,7 +15,7 @@ function parsingPages($host, $user, $password)
                 echo "Парсим {$startPage} страницу...<br>";
                 flush();
                 $mergedArray = getBashArray($startPage);
-                connectDB($host, $user, $password);
+                connectDB();
                 for ($i = 0; $i < count($mergedArray); $i++) {
                     $query = mysql_query("SELECT idQuotes FROM quotes WHERE indexQuotes='{$mergedArray[$i]['index']}'");
                     $getSimilar = mysql_fetch_array($query, MYSQL_NUM);
@@ -64,64 +60,79 @@ function getBashArray($index)
 
 
 /**
- * @param $host
- * @param $user
- * @param $password
+ *
  */
-function connectDB($host, $user, $password)
+function connectDB()
 {
-    if (mysql_connect($host, $user, $password)) {
+    if (mysql_connect(DB_HOST, DB_USER, DB_PASSWORD)) {
         if (mysql_select_db('bash')) {
         }
     }
 }
 
-/*function checkPassw($host, $userDB, $passwordDB)
+function register()
 {
-    if (!empty($_POST['login']) & !empty($_POST['password'])) {
-        connectDB($host, $userDB, $passwordDB);
-        $queryArray = mysql_query("SELECT login,passw FROM users WHERE login='{$_POST['login']}'");
-        $getArray = mysql_fetch_array($queryArray, MYSQL_ASSOC);
-        if ($_POST['login'] == $getArray['login'] & md5($_POST['password']) == $getArray['passw']) {
-            // echo 'пароль совпал';
-
-            setcookie(($_POST['login']), md5($_SERVER['REMOTE_ADDR']) . md5($_SERVER['HTTP_USER_AGENT']), time() + 300);//надо поставить куку
-            showGrubPageForm();
-            showRandomQuotes($host, $userDB, $passwordDB);
-            print_r($_COOKIE);
+    $err = array();
+    if (!empty($_POST['regLogin']) & !empty($_POST['regPassword'])) {
+        if (preg_match("/^[a-zA-Z0-9]+$/", $_POST['regLogin'])) {
+            connectDB();
+            mysql_query("INSERT INTO users (login,passw,salt) VALUES
+('{$_POST['regLogin']}',md5('{$_POST['regPassword']}'),md5('{$_SERVER['REMOTE_ADDR']}{SALT}'))");
+            header('Location: /');
         }
-
-    } else showLogInForm();
-}*/
-
-
-function checkCookie($host, $userDB, $passwordDB)
-{
-    connectDB($host, $userDB, $passwordDB);
-    foreach ($_COOKIE as $login => $hash) {
-        $queryLoginForCookies = mysql_query("SELECT login FROM users WHERE login='{$login}'");
-        $getArrayCookies = mysql_fetch_array($queryLoginForCookies, MYSQL_ASSOC);
+        $err[] = 'Login may consist of numbers and alphabets only';
     }
-    if (!empty($getArrayCookies)) {
-        showGrubPageForm();
-        showRandomQuotes($host, $userDB, $passwordDB);
-    } elseif (!empty($_POST['login']) & !empty($_POST['password'])) {
-        $queryArray = mysql_query("SELECT login,passw FROM users WHERE login='{$_POST['login']}'");
-        $getArray = mysql_fetch_array($queryArray, MYSQL_ASSOC);
-        if ($_POST['login'] == $getArray['login'] & md5($_POST['password']) == $getArray['passw']) {
-            setcookie(($_POST['login']), md5($_SERVER['REMOTE_ADDR']) . md5($_SERVER['HTTP_USER_AGENT']), time() + 3600);
-            showGrubPageForm();
-            showRandomQuotes($host, $userDB, $passwordDB);
-            print_r($_COOKIE);
-        }
-    } else showLogInForm();
+    $smartyShowRegErrors = new Smarty();
+    $smartyShowRegErrors->assign('errorReg', $err);
+    $smartyShowRegErrors->display('reg.tpl');
 }
 
 
-function paginator($host, $userDB, $passwordDB)
+function authCheck()
+{
+    if ($_GET['exit'] == 'Выйти') {
+        foreach ($_COOKIE as $key => $value) {
+            setcookie('hash', md5($_SERVER['REMOTE_ADDR'] . SALT), time() - 3600);
+            header('Location: /');
+        }
+
+    }
+    foreach ($_COOKIE as $filed => $hash) {
+        connectDB();
+        $queryArrayByHash = mysql_query("SELECT login,salt FROM users WHERE salt='{$hash}'");
+        $getArrayByHash = mysql_fetch_array($queryArrayByHash, MYSQL_ASSOC);
+        if ($hash == $getArrayByHash['salt']) {
+            showGrubPageForm();
+            showRandomQuotes();
+            exit;
+        }
+    }
+    $errorAuth = array();
+    if (!empty($_POST['authLogin']) & !empty($_POST['authPassword'])) {
+        connectDB();
+
+        $queryArrayByLogin = mysql_query("SELECT login,passw FROM users WHERE login='{$_POST['authLogin']}'");
+        $getArrayByLogin = mysql_fetch_array($queryArrayByLogin, MYSQL_ASSOC);
+        if ($_POST['authLogin'] == $getArrayByLogin['login'] & md5($_POST['authPassword']) == $getArrayByLogin['passw']) {
+            $const = SALT;
+            mysql_query("UPDATE users SET salt=md5('{$_SERVER['REMOTE_ADDR']}{$const}') WHERE login='{$_POST['authLogin']}'");
+            setcookie('login', ($_POST['authLogin']), time() + 800);
+            setcookie('hash', md5($_SERVER['REMOTE_ADDR'] . SALT), time() + 800);
+            showGrubPageForm();
+            showRandomQuotes();
+        }
+        $errorAuth[] = 'Incorrect login/password';
+    }
+    $smartyShowAuthErrors = new Smarty();
+    $smartyShowAuthErrors->assign('errorAuth', $errorAuth);
+    $smartyShowAuthErrors->display('auth.tpl');
+}
+
+
+function paginator()
 {
     $nums = 10;
-    connectDB($host, $userDB, $passwordDB);
+    connectDB();
     if (isset($_GET['page'])) {
         $page = intval($_GET['page']);
     } else {

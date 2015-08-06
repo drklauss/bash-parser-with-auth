@@ -4,17 +4,13 @@ function showGrubPageForm()
 {
 
     $getPageForm = new Smarty();
+    $getPageForm ->assign('loginName',$_COOKIE['login']);
     $getPageForm->display('parser.tpl');
 }
 
-/**
- * @param $host
- * @param $user
- * @param $password
- */
-function showRandomQuotes($host, $user, $password)
+function showRandomQuotes()
 {
-        connectDB($host, $user, $password);
+    connectDB();
     $selectRange = mysql_query('SELECT min(idQuotes),max(idQuotes) FROM quotes');
     $count = mysql_fetch_row($selectRange);
     $randArray = array();
@@ -22,7 +18,6 @@ function showRandomQuotes($host, $user, $password)
         $randArray [$i] = rand($count[0], $count[1]);
     }
     $randArrayStr = implode(',', $randArray);
-    mysql_select_db('bash');
     $getArrayQuotes = mysql_query("SELECT indexQuotes,textQuotes FROM quotes WHERE idQuotes IN ({$randArrayStr})");
     while ($showQuotes = mysql_fetch_array($getArrayQuotes, MYSQL_NUM)) {
         $smarty = new Smarty();
@@ -36,6 +31,5 @@ function showRandomQuotes($host, $user, $password)
 function showLogInForm()
 {
     $showLogIn = new Smarty();
-    $showLogIn->assign('showLogIn');
     $showLogIn->display('login.tpl');
 }
