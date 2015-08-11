@@ -11,7 +11,7 @@ function showRegForm()
 
 /**
  * @param $message
- * Отображение формы авторизации с сообщени
+ * Отображение формы авторизации с сообщениями
  */
 function showAuthForm($message)
 {
@@ -20,20 +20,12 @@ function showAuthForm($message)
     $smarty->display('auth.tpl');
 }
 
-function showTestForm()
-{
-    for ($i = 1; $i < 20; $i++) {
-        echo 'Все прошло успешно!<br>';
-    }
-}
-
+/**
+ * Отображение парсера страниц с логином авторизовавшегося юзера
+ */
 function showGrubPageForm()
 {
-    connectDB();
-    $query = mysql_query("SELECT login FROM users WHERE id='{$_COOKIE['id']}' LIMIT 1");
-    $data = mysql_fetch_assoc($query);
-    $loginHi = $data['login'];
     $getPageForm = new Smarty();
-    $getPageForm->assign('loginName', $loginHi);
+    $getPageForm->assign('loginName', $_SESSION['login']);
     $getPageForm->display('parser.tpl');
 }

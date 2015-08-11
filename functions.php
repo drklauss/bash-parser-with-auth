@@ -1,4 +1,5 @@
 <?php
+include_once 'display.php';
 include_once 'config.php';
 include_once 'simple_html_dom.php';
 
@@ -15,10 +16,10 @@ function connectDB()
 function ipToString()
 {
     $test = explode('.', $_SERVER['REMOTE_ADDR']);
-    $ip='';
+    $ip = '';
     foreach ($test as $value) {
-        $ip.=$value;
-            }
+        $ip .= $value;
+    }
     return $ip;
 }
 
@@ -70,15 +71,22 @@ function checkCookies()
     connectDB();
     $query = mysql_query("SELECT * FROM `users` WHERE id = '" . intval($_COOKIE['id']) . "' LIMIT 1");
     $userData = mysql_fetch_assoc($query);
-    if (($userData['hash'] !== $_COOKIE['hash']) or ($userData['id'] !== $_COOKIE['id'])) {
-        setcookie("id", "", time() - 3600 * 24 * 30 * 12, "/");
-        setcookie("hash", "", time() - 3600 * 24 * 30 * 12, "/");
-        return false;
+    if (!empty($_COOKIE['hash']) and !empty($_COOKIE['id'])) {
+        if (($userData['hash'] !== $_COOKIE['hash']) or ($userData['id'] !== $_COOKIE['id'])) {
+            setcookie("id", "", time() - 3600 * 24 * 30 * 12, "/");
+            setcookie("hash", "", time() - 3600 * 24 * 30 * 12, "/");
+            return false;
+        } else {
+            return true;
+        }
     } else {
-        return true;
+        return false;
     }
 }
 
+/**
+ * Регистрация нового пользователя с проверкой на длину пароля и символы пароля
+ */
 function regNewUser()
 {
     connectDB();
@@ -114,10 +122,45 @@ function regNewUser()
     }
 }
 
-include_once 'simple_html_dom.php';
-include_once('config.php');
+/**
+ * Проверяет была ли нажата кнопка выхода, если да, то форма авторизации,если нет-то проверяется кука.
+ * Если кука не найдена то идет проверять что прилдетело в запросе GET
+ */
+function checkUser(){
+    if (getExit()) {
+        showAuthForm('Введите ваш логин/пароль');
+    } elseif (checkCookies()) {
+        //здесь нужно передать приветствие и стартовать сессию
+        tetherLoginToSession();
+        showGrubPageForm();
+        //иначе ищем что нам прилетело в $_GET
+    } else {
+        switch ($_GET['auth']) {
+            case 'Выйти':
+                showAuthForm('Введите ваш логин/пароль');
+                break;
+            case 'login':
+                showAuthForm('Введите ваш логин/пароль');
+                break;
+            case 'successReg':
+                showAuthForm('Вы успешно зарегистрировались');
+                break;
+            case 'check':
+                checkLogIn();
+                break;
+            case 'successAuth':
+                showGrubPageForm();
+                break;
+            default:
+                showRegForm();
+        }
+    }
+}
 
-
+/**
+ * Парсер страниц Баш.im
+ * Првоеряет наличие записи в БД и если таковой по id quotes нет, то заливает в БД
+ */
 function parsingPages()
 {
     set_time_limit(300);
@@ -152,6 +195,8 @@ function parsingPages()
 /**
  * @param $index
  * @return array
+ * Вспомогательная функция, которая выпарсивает нужную информацию с сайта при помощи либы simpleHtmlDom
+ * На выходе получаем готовый массив с индексами цитат и цитатами
  */
 function getBashArray($index)
 {
@@ -172,3 +217,31 @@ function getBashArray($index)
     return $mergedArray;
 }
 
+/**
+ * Функция, которая запускает сессию при наличии куков, а также записывает в SESSION логин пользователя
+ * для дальнейшего отображения в течение сессии *
+ */
+function tetherLoginToSession()
+{
+    session_start();
+    connectDB();
+    $query = mysql_query("SELECT login FROM users WHERE id='{$_COOKIE['id']}' LIMIT 1");
+    $data = mysql_fetch_assoc($query);
+    $_SESSION['login'] = $data['login'];
+
+}
+
+/**
+ * @return bool
+ * Определяет нажал ли пользователь кнопку выхода. Если да, то кука "состаривается"
+ */
+function getExit()
+{
+    if (!empty($_GET['exit'])) {
+        setcookie("id", "", time() - 3600 * 24 * 30 * 12, "/");
+        setcookie("hash", "", time() - 3600 * 24 * 30 * 12, "/");
+        return true;
+    } else {
+        return false;
+    }
+}

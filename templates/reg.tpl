@@ -4,7 +4,6 @@
     <title></title>
 </head>
 <body>
-
 <div id="body">
     <div class="form">
         <h3>Форма регистрации</h3>

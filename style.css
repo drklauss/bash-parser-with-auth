@@ -46,3 +46,7 @@ span.success{
     color: #0a09bb;
     font-size: 10pt;
 }
+
+form.right-float{
+    float: right;
+}

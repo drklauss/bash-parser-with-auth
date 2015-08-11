@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2015-08-06 16:13:37
+<?php /* Smarty version 3.1.27, created on 2015-08-11 12:25:15
          compiled from "C:\DATA\MEGA\DEVELOPING\Winginx\home\bash.local\public_html\templates\reg.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:1864655c34f719f95f3_37889738%%*/
+/*%%SmartyHeaderCode:490255c9b16b452840_81224675%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '071190dfeebcbade10b411d1807027b8de3357c6' => 
     array (
       0 => 'C:\\DATA\\MEGA\\DEVELOPING\\Winginx\\home\\bash.local\\public_html\\templates\\reg.tpl',
-      1 => 1438863215,
+      1 => 1439281478,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1864655c34f719f95f3_37889738',
+  'nocache_hash' => '490255c9b16b452840_81224675',
   'variables' => 
   array (
     'errorReg' => 0,
@@ -21,13 +21,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_55c34f71a47815_93264901',
+  'unifunc' => 'content_55c9b16b4854d1_81925078',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_55c34f71a47815_93264901')) {
-function content_55c34f71a47815_93264901 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_55c9b16b4854d1_81925078')) {
+function content_55c9b16b4854d1_81925078 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '1864655c34f719f95f3_37889738';
+$_smarty_tpl->properties['nocache_hash'] = '490255c9b16b452840_81224675';
 ?>
 <html>
 <head>
@@ -35,17 +35,18 @@ $_smarty_tpl->properties['nocache_hash'] = '1864655c34f719f95f3_37889738';
     <title></title>
 </head>
 <body>
-
 <div id="body">
-    <div class="left-block">
+    <div class="form">
         <h3>Форма регистрации</h3>
 
-        <form name="regForm" method="post" action="/index.php">
+        <form name="regForm" method="post">
             <label>Введите логин:</label><br>
-            <input type="text" name="regLogin" placeholder="Ваш логин"><br>
+            <input type="text" name="login" placeholder="Ваш логин"><br>
             <label>Введите пароль:</label><br>
-            <input type="password" name="regPassword" placeholder="Ваш Пароль"><br>
-            <input type="submit" value="Зарегистрироваться"><br>
+            <input type="password" name="password" placeholder="Ваш Пароль"><br>
+            <input type="submit" name="submit" value="Зарегистрироваться">
+            <input type="submit" name="goToLogin" value="У меня есть логин" formaction="index.php?auth=login">
+            <br>
         </form>
         <ul class="errors"><?php
 $_from = $_smarty_tpl->tpl_vars['errorReg']->value;
@@ -61,7 +62,7 @@ $foreach_item_Sav = $_smarty_tpl->tpl_vars['item'];
 ?>
                 <li><?php echo $_smarty_tpl->tpl_vars['item']->value;?>
 </li>
-                       <?php
+            <?php
 $_smarty_tpl->tpl_vars['item'] = $foreach_item_Sav;
 }
 ?></ul>

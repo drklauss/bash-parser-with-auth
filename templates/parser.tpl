@@ -12,7 +12,10 @@
         <label>Начальная <input type="text" name="grubPageStart" placeholder="Номер страницы"></label>
         <label>Конечная <input type="text" name="grubPageFinish" placeholder="Номер страницы"></label>
         <input type="submit" value="Залить в БД">
-        <input type="submit" name="exit" value="Выйти" formaction="/index.php?exit=1">
+
+    </form>
+    <form class="right-float" method="get" action="/index.php">
+        <input type="submit" name="exit" value="Выйти">
     </form>
 </div>
 </body>

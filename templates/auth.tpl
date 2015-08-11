@@ -4,10 +4,8 @@
     <title></title>
 </head>
 <body>
-
 <div id="body">
     <div class="form">
-
         <h3>Форма авторизации</h3>
 
         <form name="authForm" method="post" action="/index.php?auth=check">
@@ -18,9 +16,6 @@
             <input type="submit" value="Войти"><br>
         </form>
         <span class="success">{$info}</span>
-        <ul class="errors">{foreach from=$errorAuth key=k item=item }
-                <li>{$item}</li>
-            {/foreach}</ul>
     </div>
 
 </div>
