@@ -1,6 +1,4 @@
 <?php
-echo '<pre>';
-print_r($_SERVER);
-echo '</pre>';
-
-
+include_once 'config.php';
+include_once 'functions.php';
+showQuotes();

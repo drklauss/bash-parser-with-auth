@@ -1,9 +1,14 @@
 div#body {
     width: 740px;
     margin: 20px auto;
+    }
+div.parser{
+    margin: 0 0 90px 0;
 }
 
-
+div.quotes{
+    margin: 5px;
+}
 div.text {
     border-radius: 3px;
     background: #F3F3F3 none repeat scroll 0% 0%;
@@ -31,22 +36,33 @@ div.form {
     height: 300px;
 }
 span.hello{
-    margin: 5px 5px;;
     float: right;
+
+    margin: -54px 75px;;
     color: #8b8b8b;
     font-family: "Liberation Mono", "Droid Sans Mono", "Ubuntu Mono", "Lucida Console", "Helvetica Neue", monospace;
     font-size: 10pt;
 }
 
 ul.message{
-    color: #0a09bb;
-    font-size: 10pt;
-}
-span.message{
-    color: #0a09bb;
+    color: #323099;
     font-size: 10pt;
 }
 
-form.right-float{
+form.right-corner{
     float: right;
+    margin: -170px 0px;
+}
+img.img{
+        padding: 5px;
+
+}
+
+form.parserForm {
+    font-family: "Liberation Mono", "Droid Sans Mono", "Ubuntu Mono", "Lucida Console", "Helvetica Neue", monospace;
+    font-size: 10pt;
+    margin: -110px 330px;
+    width: 160px;
+    height: 120px;
+    padding: 10px;
 }

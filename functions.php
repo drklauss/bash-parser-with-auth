@@ -22,6 +22,7 @@ function ipToString()
     }
     return $ip;
 }
+
 /**
  * @param int $length
  * @return string
@@ -98,11 +99,11 @@ function regNewUser()
         if (strlen($_POST['login']) < 3 or strlen($_POST['login']) > 30) {
             $err[] = "Логин должен быть не меньше 3-х символов и не больше 30";
         }
-        /*    # проверяем, не сущестует ли пользователя с таким именем
-            $query = mysql_query("SELECT COUNT(user_id) FROM users WHERE user_login='" . mysql_real_escape_string($_POST['login']) . "'");
-            if (mysql_result($query, 0) > 0) {
-                $err[] = "Пользователь с таким логином уже существует в базе данных";
-            }*/
+        // проверяем, не сущестует ли пользователя с таким именем
+        $query = mysql_query("SELECT COUNT(id) FROM users WHERE login='{$_POST['login']}'");
+        if (mysql_result($query, 0) > 0) {
+            $err[] = "Пользователь с таким логином уже существует в базе данных";
+        }
         # Если нет ошибок, то добавляем в БД нового пользователя
         if (count($err) == 0) {
             $login = $_POST['login'];
@@ -123,7 +124,7 @@ function regNewUser()
 
 /**
  * Проверяет была ли нажата кнопка выхода, если да, то форма авторизации,если нет-то проверяется кука.
- * Если кука не найдена то идет проверять что прилдетело в запросе GET
+ * Если кука не найдена, то идет проверять что прилетело в запросе GET
  */
 function checkUser()
 {
@@ -133,6 +134,7 @@ function checkUser()
         //здесь нужно передать приветствие и стартовать сессию
         tetherLoginToSession();
         showGrubPageForm();
+        showQuotes();
     } else {
         switch ($_GET['auth']) {
             case 'Выйти':
@@ -150,6 +152,7 @@ function checkUser()
             case 'successAuth':
                 if (checkCookies()) {
                     showGrubPageForm();
+                    showQuotes();
                 }
                 showAuthForm('Включите куки');
                 break;

@@ -17,7 +17,7 @@
             <input type="submit" name="goToLogin" value="У меня есть логин" formaction="index.php?auth=login">
             <br>
         </form>
-        <ul class="message">{foreach from=$errorReg key=k item=item }
+        <ul type="circle" class="message">{foreach from=$errorReg key=k item=item }
                 <li>{$item}</li>
             {/foreach}</ul>
     </div>
