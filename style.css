@@ -1,0 +1,52 @@
+div#body {
+    width: 740px;
+    margin: 20px auto;
+}
+
+
+div.text {
+    border-radius: 3px;
+    background: #F3F3F3 none repeat scroll 0% 0%;
+    border: 1px dotted #BBB;
+    font-family: "Monaco", "Liberation Mono", "Droid Sans Mono", "Ubuntu Mono", "Lucida Console", "Helvetica Neue", monospace;
+    padding: 7px 8px 5px;
+    font-size: 10pt;
+    line-height: 1.3em;
+}
+
+div.index {
+    color: #323099;
+    font-family: "Liberation Mono", "Droid Sans Mono", "Ubuntu Mono", "Lucida Console", "Helvetica Neue", monospace;
+    font-size: 10pt;
+    text-align: right;
+}
+
+div.form {
+    margin:10px auto;
+    border-radius: 3px;
+    background: #F3F3F3;
+    padding: 7px 8px 5px;
+    border: 1px dotted #BBB;
+    width: 40%;
+    height: 300px;
+}
+span.hello{
+    margin: 5px 5px;;
+    float: right;
+    color: #8b8b8b;
+    font-family: "Liberation Mono", "Droid Sans Mono", "Ubuntu Mono", "Lucida Console", "Helvetica Neue", monospace;
+    font-size: 10pt;
+}
+
+ul.message{
+    color: #0a09bb;
+    font-size: 10pt;
+}
+span.message{
+    color: #0a09bb;
+    font-size: 10pt;
+}
+
+form.right-float{
+    float: right;
+}
