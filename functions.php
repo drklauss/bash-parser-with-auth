@@ -22,7 +22,6 @@ function ipToString()
     }
     return $ip;
 }
-
 /**
  * @param int $length
  * @return string
@@ -134,7 +133,6 @@ function checkUser()
         //здесь нужно передать приветствие и стартовать сессию
         tetherLoginToSession();
         showGrubPageForm();
-        //иначе ищем что нам прилетело в $_GET
     } else {
         switch ($_GET['auth']) {
             case 'Выйти':

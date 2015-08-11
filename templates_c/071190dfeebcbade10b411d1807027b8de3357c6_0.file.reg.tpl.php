@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2015-08-11 12:25:15
+<?php /* Smarty version 3.1.27, created on 2015-08-11 12:59:53
          compiled from "C:\DATA\MEGA\DEVELOPING\Winginx\home\bash.local\public_html\templates\reg.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:490255c9b16b452840_81224675%%*/
+/*%%SmartyHeaderCode:3355c9b98906d7f4_13220111%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '071190dfeebcbade10b411d1807027b8de3357c6' => 
     array (
       0 => 'C:\\DATA\\MEGA\\DEVELOPING\\Winginx\\home\\bash.local\\public_html\\templates\\reg.tpl',
-      1 => 1439281478,
+      1 => 1439283464,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '490255c9b16b452840_81224675',
+  'nocache_hash' => '3355c9b98906d7f4_13220111',
   'variables' => 
   array (
     'errorReg' => 0,
@@ -21,13 +21,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_55c9b16b4854d1_81925078',
+  'unifunc' => 'content_55c9b989098786_98530134',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_55c9b16b4854d1_81925078')) {
-function content_55c9b16b4854d1_81925078 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_55c9b989098786_98530134')) {
+function content_55c9b989098786_98530134 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '490255c9b16b452840_81224675';
+$_smarty_tpl->properties['nocache_hash'] = '3355c9b98906d7f4_13220111';
 ?>
 <html>
 <head>
@@ -48,7 +48,7 @@ $_smarty_tpl->properties['nocache_hash'] = '490255c9b16b452840_81224675';
             <input type="submit" name="goToLogin" value="У меня есть логин" formaction="index.php?auth=login">
             <br>
         </form>
-        <ul class="errors"><?php
+        <ul class="message"><?php
 $_from = $_smarty_tpl->tpl_vars['errorReg']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
