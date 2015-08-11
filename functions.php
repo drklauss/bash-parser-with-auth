@@ -126,7 +126,8 @@ function regNewUser()
  * Проверяет была ли нажата кнопка выхода, если да, то форма авторизации,если нет-то проверяется кука.
  * Если кука не найдена то идет проверять что прилдетело в запросе GET
  */
-function checkUser(){
+function checkUser()
+{
     if (getExit()) {
         showAuthForm('Введите ваш логин/пароль');
     } elseif (checkCookies()) {
@@ -149,7 +150,10 @@ function checkUser(){
                 checkLogIn();
                 break;
             case 'successAuth':
-                showGrubPageForm();
+                if (checkCookies()) {
+                    showGrubPageForm();
+                }
+                showAuthForm('Включите куки');
                 break;
             default:
                 showRegForm();

@@ -38,11 +38,11 @@ span.hello{
     font-size: 10pt;
 }
 
-ul.errors{
-    color: #bb2f15;
+ul.message{
+    color: #0a09bb;
     font-size: 10pt;
 }
-span.success{
+span.message{
     color: #0a09bb;
     font-size: 10pt;
 }

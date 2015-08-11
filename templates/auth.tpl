@@ -15,7 +15,7 @@
             <input type="password" name="password" placeholder="Ваш Пароль"><br>
             <input type="submit" value="Войти"><br>
         </form>
-        <span class="success">{$info}</span>
+        <span class="message">{$info}</span>
     </div>
 
 </div>
