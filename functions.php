@@ -1,5 +1,119 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
+include_once 'config.php';
+include_once 'simple_html_dom.php';
+
+function connectDB()
+{
+    mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
+    mysql_select_db('bash');
+}
+
+/**
+ * @return mixed
+ * Преобразует IP адрес в строку вида 127001
+ */
+function ipToString()
+{
+    $test = explode('.', $_SERVER['REMOTE_ADDR']);
+    $ip='';
+    foreach ($test as $value) {
+        $ip.=$value;
+            }
+    return $ip;
+}
+
+/**
+ * @param int $length
+ * @return string
+ * Генерирует случайную строку для передачи в $hash
+ */
+function generateCode($length = 6)
+{
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHI JKLMNOPRQSTUVWXYZ0123456789";
+    $code = "";
+    $clen = strlen($chars) - 1;
+    while (strlen($code) < $length) {
+        $code .= $chars[mt_rand(0, $clen)];
+    }
+    return $code;
+}
+
+/**
+ * Проверяет правильность ввода пары логин-пароль
+ */
+function checkLogIn()
+{
+    connectDB();
+    if (isset($_POST['login'])) {
+        //Вытаскиваем из БД запись, у которой логин равняется введенному
+        $query = mysql_query("SELECT id, passw FROM users WHERE login='{$_POST['login']}' LIMIT 1");
+        $data = mysql_fetch_assoc($query);
+        // Сравниваем пароли
+        if ($data['passw'] == md5(trim($_POST['password']))) {
+            # Генерируем случайное число и шифруем его
+            $hash = md5(generateCode(10));
+            mysql_query("UPDATE users SET hash='{$hash}' WHERE id='{$data['id']}'");
+            # Ставим куки
+            setcookie("id", $data['id'], time() + 60 * 60 * 24 * 30);
+            setcookie("hash", $hash, time() + 60 * 60 * 24 * 30);
+            # Переадресовываем браузер на страницу проверки нашего скрипта
+            header("Location: index.php?auth=successAuth");
+            exit();
+        } else {
+            showAuthForm('Пароль введен неверно');
+        }
+    }
+}
+
+function checkCookies()
+{
+    connectDB();
+    $query = mysql_query("SELECT * FROM `users` WHERE id = '" . intval($_COOKIE['id']) . "' LIMIT 1");
+    $userData = mysql_fetch_assoc($query);
+    if (($userData['hash'] !== $_COOKIE['hash']) or ($userData['id'] !== $_COOKIE['id'])) {
+        setcookie("id", "", time() - 3600 * 24 * 30 * 12, "/");
+        setcookie("hash", "", time() - 3600 * 24 * 30 * 12, "/");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function regNewUser()
+{
+    connectDB();
+    if (isset($_POST['submit'])) {
+        $err = array();
+        # проверям логин
+        if (!preg_match("/^[a-zA-Z0-9]+$/", $_POST['login'])) {
+            $err[] = "Логин может состоять только из букв английского алфавита и цифр";
+        }
+        if (strlen($_POST['login']) < 3 or strlen($_POST['login']) > 30) {
+            $err[] = "Логин должен быть не меньше 3-х символов и не больше 30";
+        }
+        /*    # проверяем, не сущестует ли пользователя с таким именем
+            $query = mysql_query("SELECT COUNT(user_id) FROM users WHERE user_login='" . mysql_real_escape_string($_POST['login']) . "'");
+            if (mysql_result($query, 0) > 0) {
+                $err[] = "Пользователь с таким логином уже существует в базе данных";
+            }*/
+        # Если нет ошибок, то добавляем в БД нового пользователя
+        if (count($err) == 0) {
+            $login = $_POST['login'];
+            # Убираем лишние пробелы и делаем двойное шифрование
+            $password = md5(trim($_POST['password']));
+            mysql_query("INSERT INTO `users` SET login='$login', passw='$password'");
+            header("Location: index.php?auth=successReg");
+            exit();
+        } else {
+            $smarty = new Smarty();
+            $smarty->assign('errorReg', $err);
+            $smarty->display('reg.tpl');
+            exit();
+
+        }
+    }
+}
+
 include_once 'simple_html_dom.php';
 include_once('config.php');
 
@@ -58,136 +172,3 @@ function getBashArray($index)
     return $mergedArray;
 }
 
-
-/**
- *
- */
-function connectDB()
-{
-    if (mysql_connect(DB_HOST, DB_USER, DB_PASSWORD)) {
-        if (mysql_select_db('bash')) {
-        }
-    }
-}
-
-function register()
-{
-    $err = array();
-    if (!empty($_POST['regLogin']) & !empty($_POST['regPassword'])) {
-        if (preg_match("/^[a-zA-Z0-9]+$/", $_POST['regLogin'])) {
-            connectDB();
-            mysql_query("INSERT INTO users (login,passw,salt) VALUES
-('{$_POST['regLogin']}',md5('{$_POST['regPassword']}'),md5('{$_SERVER['REMOTE_ADDR']}{SALT}'))");
-            header('Location: /');
-        }
-        $err[] = 'Login may consist of numbers and alphabets only';
-    }
-    $smartyShowRegErrors = new Smarty();
-    $smartyShowRegErrors->assign('errorReg', $err);
-    $smartyShowRegErrors->display('reg.tpl');
-}
-
-
-function authCheck()
-{
-    if ($_GET['exit'] == 'Выйти') {
-        foreach ($_COOKIE as $key => $value) {
-            setcookie('hash', md5($_SERVER['REMOTE_ADDR'] . SALT), time() - 3600);
-            header('Location: /');
-        }
-
-    }
-    foreach ($_COOKIE as $filed => $hash) {
-        connectDB();
-        $queryArrayByHash = mysql_query("SELECT login,salt FROM users WHERE salt='{$hash}'");
-        $getArrayByHash = mysql_fetch_array($queryArrayByHash, MYSQL_ASSOC);
-        if ($hash == $getArrayByHash['salt']) {
-            showGrubPageForm();
-            showRandomQuotes();
-            exit;
-        }
-    }
-    $errorAuth = array();
-    if (!empty($_POST['authLogin']) & !empty($_POST['authPassword'])) {
-        connectDB();
-
-        $queryArrayByLogin = mysql_query("SELECT login,passw FROM users WHERE login='{$_POST['authLogin']}'");
-        $getArrayByLogin = mysql_fetch_array($queryArrayByLogin, MYSQL_ASSOC);
-        if ($_POST['authLogin'] == $getArrayByLogin['login'] & md5($_POST['authPassword']) == $getArrayByLogin['passw']) {
-            $const = SALT;
-            mysql_query("UPDATE users SET salt=md5('{$_SERVER['REMOTE_ADDR']}{$const}') WHERE login='{$_POST['authLogin']}'");
-            setcookie('login', ($_POST['authLogin']), time() + 800);
-            setcookie('hash', md5($_SERVER['REMOTE_ADDR'] . SALT), time() + 800);
-            showGrubPageForm();
-            showRandomQuotes();
-        }
-        $errorAuth[] = 'Incorrect login/password';
-    }
-    $smartyShowAuthErrors = new Smarty();
-    $smartyShowAuthErrors->assign('errorAuth', $errorAuth);
-    $smartyShowAuthErrors->display('auth.tpl');
-}
-
-
-function paginator()
-{
-    $nums = 10;
-    connectDB();
-    if (isset($_GET['page'])) {
-        $page = intval($_GET['page']);
-    } else {
-        $page = 1;
-    }
-
-    $query = "SELECT COUNT(*) AS `counter` FROM `quotes`";
-    $sql = mysql_query($query) or die(mysql_error());
-    $row = mysql_fetch_assoc($sql);
-
-    $elements = $row['counter'];
-
-    $pages = ceil($elements / $nums);
-
-    if ($page < 1) {
-        $page = 1;
-    } elseif ($page > $pages) {
-        $page = $pages;
-    }
-
-    $start = ($page - 1) * $nums;
-
-// когда у нас в таблице нет записей
-    if ($start < 0) $start = 0;
-
-    $query = "SELECT * FROM `quotes` LIMIT {$start}, {$nums}";
-    $sql = mysql_query($query) or die(mysql_error());
-
-    while ($row = mysql_fetch_assoc($sql)) {
-        // здесь выводим записи из базы
-    }
-
-// далее нам надо прицепить переключение страниц
-
-    $neighbours = 4;
-    $left_neighbour = $page - $neighbours;
-    if ($left_neighbour < 1) $left_neighbour = 1;
-
-    $right_neighbour = $page + $neighbours;
-    if ($right_neighbour > $pages) $right_neighbour = $pages;
-
-    if ($page > 1) {
-        print ' <a href="?page=1">начало</a> ... <a href="?page=' . ($page - 1) . '">←сюда</a> ';
-    }
-
-    for ($i = $left_neighbour; $i <= $right_neighbour; $i++) {
-        if ($i != $page) {
-            print ' <a href="?page=' . $i . '">' . $i . '</a> ';
-        } else {
-            // выбранная страница
-            print ' <b>' . $i . '</b> ';
-        }
-    }
-
-    if ($page < $pages) {
-        print ' <a href="?page=' . ($page + 1) . '">туда→</a> ... <a href="?page=' . $pages . '">конец</a> ';
-    }
-}

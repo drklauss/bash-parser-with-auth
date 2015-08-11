@@ -21,31 +21,28 @@ div.index {
     text-align: right;
 }
 
-div.left-block {
-     float: left;
-     border-radius: 3px;
-     background: #F3F3F3;
-     padding: 7px 8px 5px;
-     border: 1px dotted #BBB;
-     width: 350px;
-     height: 250px;
- }
-div.right-block {
-    float: right;
+div.form {
+    margin:10px auto;
     border-radius: 3px;
     background: #F3F3F3;
     padding: 7px 8px 5px;
     border: 1px dotted #BBB;
-    width: 350px;
-    height: 250px;
+    width: 40%;
+    height: 300px;
 }
-div.hello{
-    color: #bbbbbb;
+span.hello{
+    margin: 5px 5px;;
+    float: right;
+    color: #8b8b8b;
     font-family: "Liberation Mono", "Droid Sans Mono", "Ubuntu Mono", "Lucida Console", "Helvetica Neue", monospace;
-    font-size: 9pt;
+    font-size: 10pt;
 }
 
 ul.errors{
     color: #bb2f15;
+    font-size: 10pt;
+}
+span.success{
+    color: #0a09bb;
     font-size: 10pt;
 }
