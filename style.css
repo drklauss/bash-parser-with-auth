@@ -26,6 +26,18 @@ div.index {
     text-align: right;
 }
 
+div.footer {
+    font-family: "Liberation Mono", "Droid Sans Mono", "Ubuntu Mono", "Lucida Console", "Helvetica Neue", monospace;
+    font-size: 10pt;
+    color: #8b8b8b;
+    margin:10px auto;
+    border-radius: 3px;
+    background: #F3F3F3;
+    padding: 7px 8px 5px;
+    border: 1px dotted #BBB;
+
+}
+
 div.form {
     margin:10px auto;
     border-radius: 3px;

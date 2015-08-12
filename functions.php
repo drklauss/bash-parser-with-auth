@@ -134,6 +134,7 @@ function checkUser()
         //здесь нужно передать приветствие и стартовать сессию
         tetherLoginToSession();
         showGrubPageForm();
+        parsingPages();
         showQuotes();
     } else {
         switch ($_GET['auth']) {
@@ -152,6 +153,7 @@ function checkUser()
             case 'successAuth':
                 if (checkCookies()) {
                     showGrubPageForm();
+                    parsingPages();
                     showQuotes();
                 }
                 showAuthForm('Включите куки');
@@ -174,6 +176,7 @@ function parsingPages()
             $startPage = $_GET['grubPageStart'];
             $finishPage = $_GET['grubPageFinish'];
             while ($startPage <= $finishPage) {
+                ob_flush();
                 echo "Парсим {$startPage} страницу...<br>";
                 flush();
                 $mergedArray = getBashArray($startPage);
@@ -250,3 +253,4 @@ function getExit()
         return false;
     }
 }
+
