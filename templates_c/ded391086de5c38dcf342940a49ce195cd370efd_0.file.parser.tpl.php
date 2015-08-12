@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2015-08-12 15:05:07
+<?php /* Smarty version 3.1.27, created on 2015-08-12 15:41:54
          compiled from "C:\DATA\Winginx\home\bash.local\public_html\templates\parser.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:119755cb2863908530_01742736%%*/
+/*%%SmartyHeaderCode:642755cb310279fb10_73862407%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ded391086de5c38dcf342940a49ce195cd370efd' => 
     array (
       0 => 'C:\\DATA\\Winginx\\home\\bash.local\\public_html\\templates\\parser.tpl',
-      1 => 1439377505,
+      1 => 1439379689,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '119755cb2863908530_01742736',
+  'nocache_hash' => '642755cb310279fb10_73862407',
   'variables' => 
   array (
     'loginName' => 0,
@@ -22,20 +22,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_55cb286395e450_89380544',
+  'unifunc' => 'content_55cb31027fd748_38707626',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_55cb286395e450_89380544')) {
-function content_55cb286395e450_89380544 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_55cb31027fd748_38707626')) {
+function content_55cb31027fd748_38707626 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '119755cb2863908530_01742736';
+$_smarty_tpl->properties['nocache_hash'] = '642755cb310279fb10_73862407';
 ?>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <link rel="stylesheet" href="/style.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/paginator3000.css" />
+    <link rel="stylesheet" type="text/css" href="/plugin/paginator3000.css" />
     <?php echo '<script'; ?>
- type="text/javascript" src="/paginator3000.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/plugin/paginator3000.js"><?php echo '</script'; ?>
 >
     <title>Парсер для Баша</title>
 </head>

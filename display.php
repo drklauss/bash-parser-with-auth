@@ -39,6 +39,9 @@ function showGrubPageForm()
     $getPageForm->display('parser.tpl');
 }
 
+/**
+ * Отображает цитаты в рандомном порядке
+ */
 function showRandomQuotes()
 {
     connectDB();
@@ -58,6 +61,9 @@ function showRandomQuotes()
     }
 }
 
+/**
+ * Отображает заданную страницу цитат исходя из того,что прилетает в $_GET
+ */
 function showQuotes()
 {
     if (is_numeric($_GET['page'])) {
@@ -79,6 +85,9 @@ function showQuotes()
 
 }
 
+/**
+ * Рисует примитивный футер, а над ним пагинатор3000
+ */
 function get_footer()
 {
     if (is_numeric($_GET['page'])) {
