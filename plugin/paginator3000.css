@@ -96,7 +96,7 @@
     width: 20px;
     height: 20px;
     overflow: hidden;
-    background: url(slider_knob.gif) no-repeat 50% 50%;
+    background: url(/plugin/slider_knob.gif) no-repeat 50% 50%;
     cursor: pointer;
     cursor: hand;
 }

@@ -1,8 +1,8 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <link rel="stylesheet" href="/style.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/paginator3000.css" />
-    <script type="text/javascript" src="/paginator3000.js"></script>
+    <link rel="stylesheet" type="text/css" href="/plugin/paginator3000.css" />
+    <script type="text/javascript" src="/plugin/paginator3000.js"></script>
     <title>Парсер для Баша</title>
 </head>
 <body>
